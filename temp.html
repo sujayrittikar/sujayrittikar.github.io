@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Sujay Uday Rittikar</title>
+        <meta
+            name="description"
+            content="Sujay Uday Rittikar — MSc (Thesis) Applied Computer Science. Multilingual NLP, multimodal AI, and production systems."
+        />
+
+        <!-- Quiet academic pairing: serif for headings, sans for body -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --bg: #f7f6f3;
+                --paper: #fbfbf9;
+                --ink: #1f1f1f;
+                --muted: #666;
+                --rule: #ddd;
+                --accent: #2c4a6e;
+                --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+                --radius: 18px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+                background:
+                    radial-gradient(
+                        1200px 600px at 15% 10%,
+                        rgba(44, 74, 110, 0.08),
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        900px 600px at 85% 0%,
+                        rgba(0, 0, 0, 0.05),
+                        transparent 55%
+                    ),
+                    var(--bg);
+                color: var(--ink);
+                font-family:
+                    "Inter",
+                    system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    Arial,
+                    sans-serif;
+                line-height: 1.65;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            main {
+                max-width: 920px;
+                margin: 0 auto;
+                padding: 4.25rem 1.5rem 6rem;
+            }
+
+            .card {
+                background: color-mix(in srgb, var(--paper) 92%, white 8%);
+                border: 1px solid rgba(0, 0, 0, 0.06);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                padding: 2.2rem;
+            }
+
+            header.card {
+                padding: 2.6rem 2.2rem;
+            }
+
+            h1 {
+                font-family: "Crimson Pro", serif;
+                font-weight: 400;
+                font-size: clamp(2rem, 3vw, 2.7rem);
+                letter-spacing: 0.02em;
+                margin: 0 0 0.35rem 0;
+            }
+            .subtitle {
+                color: var(--muted);
+                font-size: 0.98rem;
+                margin: 0 0 1.2rem 0;
+                max-width: 70ch;
+            }
+
+            .topline {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.7rem 1.25rem;
+                align-items: center;
+                margin-top: 0.4rem;
+                color: var(--muted);
+                font-size: 0.95rem;
+            }
+            .topline a {
+                color: var(--accent);
+            }
+
+            a {
+                color: var(--accent);
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+            }
+            a:hover {
+                border-bottom-color: var(--accent);
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: 1.25fr 0.75fr;
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+            @media (max-width: 900px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+                header.card {
+                    padding: 2.2rem 1.6rem;
+                }
+                .card {
+                    padding: 1.6rem;
+                }
+            }
+
+            section {
+                margin-top: 1.5rem;
+            }
+            .section-title {
+                display: flex;
+                align-items: baseline;
+                gap: 0.75rem;
+                margin: 0 0 0.9rem 0;
+            }
+            .section-title h2 {
+                font-family: "Crimson Pro", serif;
+                font-weight: 400;
+                font-size: 1.55rem;
+                margin: 0;
+            }
+            .section-title .hint {
+                color: var(--muted);
+                font-size: 0.9rem;
+            }
+
+            .rule {
+                border: none;
+                border-top: 1px solid var(--rule);
+                margin: 1.35rem 0 1.2rem;
+            }
+
+            .lead p {
+                margin: 0.6rem 0;
+            }
+
+            .pillrow {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-top: 0.9rem;
+            }
+            .pill {
+                border: 1px solid rgba(44, 74, 110, 0.22);
+                color: color-mix(in srgb, var(--accent) 92%, black 8%);
+                background: rgba(44, 74, 110, 0.06);
+                padding: 0.35rem 0.6rem;
+                border-radius: 999px;
+                font-size: 0.83rem;
+                white-space: nowrap;
+            }
+
+            .item {
+                margin: 1rem 0;
+            }
+            .item h3 {
+                margin: 0;
+                font-weight: 600;
+                font-size: 1rem;
+            }
+            .meta {
+                color: var(--muted);
+                font-size: 0.9rem;
+                margin: 0.2rem 0 0.35rem;
+            }
+            ul {
+                margin: 0.45rem 0 0;
+                padding-left: 1.1rem;
+            }
+            li {
+                margin: 0.32rem 0;
+            }
+
+            .two-col {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem;
+            }
+            @media (max-width: 700px) {
+                .two-col {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            footer {
+                margin-top: 2rem;
+                color: var(--muted);
+                font-size: 0.85rem;
+                text-align: center;
+            }
+            .small {
+                font-size: 0.88rem;
+                color: var(--muted);
+            }
+            .btns {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                margin-top: 1.1rem;
+            }
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.55rem;
+                border-radius: 999px;
+                padding: 0.55rem 0.9rem;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                background: white;
+                color: var(--ink);
+                font-size: 0.9rem;
+            }
+            .btn:hover {
+                border-color: rgba(44, 74, 110, 0.35);
+                color: var(--accent);
+            }
+            .kbd {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    "Liberation Mono", monospace;
+                font-size: 0.85em;
+                padding: 0.12rem 0.35rem;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-bottom-width: 2px;
+                border-radius: 6px;
+                background: rgba(0, 0, 0, 0.03);
+                color: color-mix(in srgb, var(--ink) 90%, var(--muted) 10%);
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <!-- HERO -->
+            <header class="card">
+                <h1>Sujay Uday Rittikar</h1>
+                <p class="subtitle">
+                    MSc (Thesis) candidate researching multilingual NLP and
+                    reinforcement learning. Building production AI systems
+                    across EdTech, fintech, and real estate domains.
+                </p>
+
+                <div class="topline">
+                    <span>Winnipeg, Canada</span>
+                    <span>·</span>
+                    <a href="mailto:suj00rit20@gmail.com"
+                        >suj00rit20@gmail.com</a
+                    >
+                    <span>·</span>
+                    <!-- Replace these two links with your real URLs -->
+                    <a
+                        href="https://github.com/yourusername"
+                        target="_blank"
+                        rel="noreferrer"
+                        >GitHub</a
+                    >
+                    <span>·</span>
+                    <a
+                        href="https://www.linkedin.com/in/yourusername"
+                        target="_blank"
+                        rel="noreferrer"
+                        >LinkedIn</a
+                    >
+                </div>
+
+                <div class="btns" aria-label="Quick actions">
+                    <!-- Optional: upload your PDF CV into this repo and set href to it, e.g. href="Sujay_Rittikar_CV.pdf" -->
+                    <a
+                        class="btn"
+                        href="#publications"
+                        title="Jump to publications"
+                        >Publications</a
+                    >
+                    <a class="btn" href="#experience" title="Jump to experience"
+                        >Experience</a
+                    >
+                    <a class="btn" href="#skills" title="Jump to skills"
+                        >Skills</a
+                    >
+                    <a class="btn" href="#contact" title="Jump to contact"
+                        >Contact</a
+                    >
+                </div>
+
+                <div class="pillrow" aria-label="Key interests">
+                    <span class="pill">Multilingual NLP</span>
+                    <span class="pill">Medical AI</span>
+                    <span class="pill">RAG + LLM Systems</span>
+                    <span class="pill">RL for NLP</span>
+                    <span class="pill">Distributed ETL</span>
+                </div>
+            </header>
+
+            <div class="grid">
+                <!-- LEFT COLUMN -->
+                <div class="card">
+                    <section class="lead">
+                        <div class="section-title">
+                            <h2>About</h2>
+                            <span class="hint">research × systems</span>
+                        </div>
+
+                        <p>
+                            I bridge applied research and engineering—developing
+                            multimodal learning systems, text classification
+                            pipelines, and scalable data infrastructure. My
+                            current research explores text summarization across
+                            morphologically diverse languages and medical AI for
+                            diagnosis.
+                        </p>
+
+                        <hr class="rule" />
+
+                        <div class="section-title">
+                            <h2>Education</h2>
+                            <span class="hint">current + foundations</span>
+                        </div>
+
+                        <div class="item">
+                            <h3>
+                                Master of Science (Thesis) in Applied Computer
+                                Science · University of Winnipeg
+                            </h3>
+                            <div class="meta">
+                                2024 – 2026 · GPA: 4.375/4.50 · Supervisor:
+                                Sheela Ramanna
+                            </div>
+                            <ul>
+                                <li>
+                                    Focus: Multilingualism, Reinforcement
+                                    Learning
+                                </li>
+                                <li>
+                                    Research direction: multilingual LLM
+                                    applications, multimodal learning for
+                                    medical diagnosis, and RL for NLP.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="item">
+                            <h3>
+                                B.Tech in Computer Science and Engineering ·
+                                Shivaji University
+                            </h3>
+                            <div class="meta">
+                                2018 – 2022 · GPA: 8.32/10.0 · Supervisor: U.A.
+                                Nuli
+                            </div>
+                            <ul>
+                                <li>
+                                    Focus: Speech Recognition and
+                                    language-focused systems.
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="experience">
+                        <div class="section-title">
+                            <h2>Experience</h2>
+                            <span class="hint">shipping + scaling</span>
+                        </div>
+
+                        <div class="item">
+                            <h3>
+                                Full-Stack Developer · QstudyAI, Inc. (Winnipeg,
+                                Canada)
+                            </h3>
+                            <div class="meta">May 2025 – Present</div>
+                            <ul>
+                                <li>
+                                    Leading end-to-end development of a
+                                    personalized EdTech AI platform serving 700+
+                                    users across 10+ universities, reaching 10k+
+                                    visits in 6 months.
+                                </li>
+                                <li>
+                                    Built multimodal generative features
+                                    including adaptive quizzes using test
+                                    theory, personalized notes, and AI-generated
+                                    stories, images, and songs.
+                                </li>
+                                <li>
+                                    Integrated advanced prompt engineering
+                                    strategies; implemented analytics
+                                    dashboards, performance tracking, and
+                                    comprehensive admin interfaces.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="item">
+                            <h3>Backend & Data Engineer · Weaveflow</h3>
+                            <div class="meta">June 2023 – August 2024</div>
+                            <ul>
+                                <li>
+                                    Architected and maintained backend/data
+                                    ecosystems with RAG pipelines and custom LLM
+                                    integrations for a smart crypto data
+                                    platform.
+                                </li>
+                                <li>
+                                    Applied clustering models and NLP techniques
+                                    to address complex language processing
+                                    challenges; contributed to 100% revenue
+                                    growth.
+                                </li>
+                                <li>
+                                    Built custom APIs enabling seamless
+                                    integration of diverse data sources and
+                                    investor-focused analytics.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="item">
+                            <h3>
+                                Data Engineer · Terra Economics and Analytics
+                                Lab
+                            </h3>
+                            <div class="meta">November 2022 – May 2023</div>
+                            <ul>
+                                <li>
+                                    Built distributed ETL pipelines for India's
+                                    real estate market, processing ~1.5M data
+                                    points daily.
+                                </li>
+                                <li>
+                                    Developed NLP-based data transformation
+                                    systems for large-scale ingestion and
+                                    normalization.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="item">
+                            <h3>Data Engineering Intern · KYC Hub</h3>
+                            <div class="meta">April 2022 – October 2022</div>
+                            <ul>
+                                <li>
+                                    Automated ingestion of 150+ complex data
+                                    sources.
+                                </li>
+                                <li>
+                                    Developed 50+ transformation pipelines for
+                                    an AML SaaS platform.
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="publications">
+                        <div class="section-title">
+                            <h2>Research & Publications</h2>
+                            <span class="hint">papers</span>
+                        </div>
+
+                        <!-- Unpublished - hidden for now
+                        <div class="item">
+                            <h3>
+                                Biomedical Signal Processing and Control
+                                (Elsevier)
+                            </h3>
+                            <div class="meta">2025 · Co-author · Submitted</div>
+                            <p class="small">
+                                <em
+                                    >Towards Robust Alzheimer's Disease
+                                    Classification with Multimodal Fusion</em
+                                >
+                                (Sran, M.S.; Rittikar, S.U.; Liu, Q.; Ramanna,
+                                S.).
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <h3>EACL 2026 (ACL)</h3>
+                            <div class="meta">Submitted March 2026</div>
+                            <p class="small">
+                                <em
+                                    >SSCL-DP: Framework for Reducing
+                                    Degeneration in Abstractive Text
+                                    Summarization with Contrastive Tuning</em
+                                >
+                                (Rittikar, S.U.; Ramanna, S.).
+                            </p>
+                        </div>
+                        -->
+
+                        <div class="item">
+                            <h3>
+                                <a
+                                    href="https://ieeexplore.ieee.org/document/10064944"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    >IEEE AIST 2022</a
+                                >
+                            </h3>
+                            <div class="meta">
+                                Published · First Author · 71–80% contribution
+                            </div>
+                            <p class="small">
+                                <em
+                                    >Development of a Context-based Conversation
+                                    State Prediction System</em
+                                >
+                                (Rittikar, S.U.; Rangate, S.; Nuli, U.A.; Sathe,
+                                M.; Rathor, V.; Patil, D.).
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="section-title">
+                            <h2>Awards, Mentoring & Talks</h2>
+                            <span class="hint">service + recognition</span>
+                        </div>
+
+                        <div class="two-col">
+                            <div class="item">
+                                <h3>Awards</h3>
+                                <ul>
+                                    <li>
+                                        President's Scholarship for World
+                                        Leaders (University of Winnipeg) —
+                                        $5,000 CAD (2024)
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <h3>Mentoring</h3>
+                                <ul>
+                                    <li>
+                                        Graduate Research Assistant — University
+                                        of Winnipeg (Sep 2024 – Present)
+                                    </li>
+                                    <li>
+                                        Research Mentor (MITACS) — Mentored 2
+                                        students (Jul 2025 – Oct 2025)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <h3>Presentations</h3>
+                            <ul>
+                                <li>
+                                    3-Minute Thesis Competition 2025 —
+                                    "Multilingual Propaganda Extraction using
+                                    LLMs" (22 languages;
+                                    claims/narratives/actors).
+                                </li>
+                                <li>
+                                    Physics Colloquium 2025 (Invited) — "Towards
+                                    Robust Alzheimer's Disease Classification
+                                    with Multimodal Fusion".
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <aside class="card" id="skills">
+                    <section>
+                        <div class="section-title">
+                            <h2>Skills</h2>
+                            <span class="hint">tooling</span>
+                        </div>
+
+                        <div class="item">
+                            <h3>Languages</h3>
+                            <p class="small">
+                                Python · JavaScript/TypeScript · SQL
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <h3>Backend / Data</h3>
+                            <p class="small">
+                                FastAPI · Node.js · PostgreSQL · MongoDB ·
+                                Apache Spark · ETL Pipelines
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <h3>Frontend</h3>
+                            <p class="small">
+                                Next.js · React · TypeScript · Tailwind CSS
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <h3>ML / AI</h3>
+                            <p class="small">
+                                LLMs (Claude, GPT-4, LLaMA) · Transformers ·
+                                BERT · T5 · RAG · Fine-tuning · Reinforcement
+                                Learning
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <h3>NLP</h3>
+                            <p class="small">
+                                Sentiment Analysis · NER · Text Classification ·
+                                Propaganda Detection
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <h3>Cloud / DevOps</h3>
+                            <p class="small">
+                                AWS (EC2, S3, Lambda) · Docker · GitHub · CI/CD
+                            </p>
+                        </div>
+
+                        <hr class="rule" />
+
+                        <div class="section-title">
+                            <h2>Research Interests</h2>
+                            <span class="hint">themes</span>
+                        </div>
+                        <ul class="small">
+                            <li>
+                                Multilingual NLP; bilingualism & multilingualism
+                            </li>
+                            <li>Medical AI</li>
+                            <li>Propaganda & disinformation detection</li>
+                            <li>Aspect-based sentiment analysis</li>
+                            <li>RL for NLP; abstractive summarization</li>
+                            <li>Expert systems; information systems</li>
+                        </ul>
+
+                        <hr class="rule" />
+
+                        <section id="contact">
+                            <div class="section-title">
+                                <h2>Contact</h2>
+                                <span class="hint">quick</span>
+                            </div>
+                            <p class="small">
+                                Email is best:
+                                <a href="mailto:suj00rit20@gmail.com"
+                                    >suj00rit20@gmail.com</a
+                                >
+                                <br />
+                                or,
+                                <a
+                                    href="mailto:rittikar-s@webmail.uwinnipeg.ca"
+                                >
+                                    rittikar-s@webmail.uwinnipeg.ca </a
+                                >.
+                            </p>
+                        </section>
+                    </section>
+                </aside>
+            </div>
+
+            <footer>
+                © <span id="year"></span> · Plain HTML, meant to last
+            </footer>
+        </main>
+
+        <script>
+            document.getElementById("year").textContent =
+                new Date().getFullYear();
+        </script>
+    </body>
+</html>
