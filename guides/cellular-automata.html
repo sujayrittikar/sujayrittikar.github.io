@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Cellular Automata - A Comprehensive Guide · Sujay Rittikar</title>
+        <meta
+            name="description"
+            content="A comprehensive guide to Cellular Automata - 1D/2D rules, Conway's Game of Life, Wolfram classes, entropy, and more. By Sujay Rittikar."
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- marked.js for Markdown rendering -->
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <!-- highlight.js for code blocks -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+
+        <style>
+            :root {
+                --bg: #f7f6f3;
+                --paper: #fbfbf9;
+                --ink: #1f1f1f;
+                --muted: #666;
+                --rule: #ddd;
+                --accent: #2c4a6e;
+                --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+                --radius: 18px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html, body {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+                background:
+                    radial-gradient(
+                        1200px 600px at 15% 10%,
+                        rgba(44, 74, 110, 0.08),
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        900px 600px at 85% 0%,
+                        rgba(0, 0, 0, 0.05),
+                        transparent 55%
+                    ),
+                    var(--bg);
+                color: var(--ink);
+                font-family:
+                    "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                line-height: 1.65;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            main {
+                max-width: 860px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem 6rem;
+            }
+
+            nav {
+                margin-bottom: 2rem;
+                font-size: 0.9rem;
+            }
+            nav a {
+                color: var(--accent);
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+            }
+            nav a:hover {
+                border-bottom-color: var(--accent);
+            }
+            nav .sep {
+                color: var(--muted);
+                margin: 0 0.4rem;
+            }
+
+            .card {
+                background: color-mix(in srgb, var(--paper) 92%, white 8%);
+                border: 1px solid rgba(0, 0, 0, 0.06);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                padding: 2.8rem 3rem;
+            }
+            @media (max-width: 700px) {
+                .card {
+                    padding: 1.6rem;
+                }
+            }
+
+            /* Markdown content styles */
+            .content h1 {
+                font-family: "Crimson Pro", serif;
+                font-weight: 400;
+                font-size: clamp(1.8rem, 3vw, 2.5rem);
+                letter-spacing: 0.02em;
+                margin: 0 0 0.5rem;
+                line-height: 1.2;
+            }
+            .content h2 {
+                font-family: "Crimson Pro", serif;
+                font-weight: 400;
+                font-size: 1.55rem;
+                margin: 2.2rem 0 0.7rem;
+                padding-bottom: 0.3rem;
+                border-bottom: 1px solid var(--rule);
+            }
+            .content h3 {
+                font-weight: 600;
+                font-size: 1.05rem;
+                margin: 1.6rem 0 0.4rem;
+            }
+            .content h4 {
+                font-weight: 600;
+                font-size: 0.95rem;
+                margin: 1.2rem 0 0.3rem;
+                color: var(--muted);
+            }
+            .content p {
+                margin: 0.7rem 0;
+            }
+            .content a {
+                color: var(--accent);
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+            }
+            .content a:hover {
+                border-bottom-color: var(--accent);
+            }
+            .content ul, .content ol {
+                padding-left: 1.4rem;
+                margin: 0.5rem 0;
+            }
+            .content li {
+                margin: 0.3rem 0;
+            }
+            .content code {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    "Liberation Mono", monospace;
+                font-size: 0.85em;
+                padding: 0.12rem 0.35rem;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                background: rgba(0, 0, 0, 0.04);
+            }
+            .content pre {
+                background: #f6f8fa;
+                border: 1px solid rgba(0, 0, 0, 0.08);
+                border-radius: 10px;
+                padding: 1.1rem 1.3rem;
+                overflow-x: auto;
+                margin: 1rem 0;
+            }
+            .content pre code {
+                background: none;
+                border: none;
+                padding: 0;
+                font-size: 0.875rem;
+            }
+            .content blockquote {
+                border-left: 3px solid var(--accent);
+                margin: 1rem 0;
+                padding: 0.4rem 1rem;
+                color: var(--muted);
+                background: rgba(44, 74, 110, 0.04);
+                border-radius: 0 6px 6px 0;
+            }
+            .content table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 1rem 0;
+                font-size: 0.9rem;
+            }
+            .content th, .content td {
+                border: 1px solid var(--rule);
+                padding: 0.5rem 0.8rem;
+                text-align: left;
+            }
+            .content th {
+                background: rgba(44, 74, 110, 0.06);
+                font-weight: 600;
+            }
+            .content hr {
+                border: none;
+                border-top: 1px solid var(--rule);
+                margin: 2rem 0;
+            }
+
+            #loading {
+                text-align: center;
+                padding: 3rem;
+                color: var(--muted);
+            }
+
+            footer {
+                margin-top: 2rem;
+                color: var(--muted);
+                font-size: 0.85rem;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <nav>
+                <a href="../index.html">← Sujay Rittikar</a>
+                <span class="sep">/</span>
+                <a href="../index.html#guides">Guides</a>
+                <span class="sep">/</span>
+                <span>Cellular Automata</span>
+            </nav>
+
+            <div class="card">
+                <div id="loading">Loading guide…</div>
+                <div id="content" class="content" style="display:none"></div>
+            </div>
+
+            <footer>
+                © <span id="year"></span> Sujay Uday Rittikar
+            </footer>
+        </main>
+
+        <script>
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            function slugify(text) {
+                return text
+                    .replace(/<[^>]*>/g, '')          // strip any HTML tags
+                    .replace(/&[a-z#0-9]+;/gi, ' ')   // decode/drop HTML entities
+                    .toLowerCase()
+                    .replace(/[^a-z0-9\s]/g, '')       // remove all punctuation (inc. hyphens)
+                    .replace(/\s/g, '-')               // each space → hyphen
+                    .replace(/^-+|-+$/g, '');          // trim leading/trailing hyphens
+            }
+
+            marked.use({
+                breaks: true,
+                gfm: true,
+                renderer: {
+                    heading({ text, depth }) {
+                        const id = slugify(text);
+                        return `<h${depth} id="${id}">${text}</h${depth}>\n`;
+                    }
+                }
+            });
+
+            fetch("cellular_automata_guide.md")
+                .then((r) => {
+                    if (!r.ok) throw new Error("Failed to load guide.");
+                    return r.text();
+                })
+                .then((md) => {
+                    const html = marked.parse(md);
+                    const container = document.getElementById("content");
+                    container.innerHTML = html;
+                    container.style.display = "block";
+                    document.getElementById("loading").style.display = "none";
+
+                    // Syntax-highlight all code blocks
+                    container.querySelectorAll("pre code").forEach((block) => {
+                        hljs.highlightElement(block);
+                    });
+                })
+                .catch((err) => {
+                    document.getElementById("loading").textContent =
+                        "Could not load the guide. " + err.message;
+                });
+        </script>
+    </body>
+</html>
