@@ -19,13 +19,13 @@
 
         <style>
             :root {
-                --bg: #f7f6f3;
-                --paper: #fbfbf9;
-                --ink: #1f1f1f;
-                --muted: #666;
-                --rule: #ddd;
-                --accent: #2c4a6e;
-                --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+                --bg: #0f1117;
+                --paper: #161b27;
+                --ink: #e2e8f0;
+                --muted: #8892a4;
+                --rule: #2a3344;
+                --accent: #7aa2d4;
+                --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
                 --radius: 18px;
             }
             * {
@@ -40,12 +40,12 @@
                 background:
                     radial-gradient(
                         1200px 600px at 15% 10%,
-                        rgba(44, 74, 110, 0.08),
+                        rgba(122, 162, 212, 0.07),
                         transparent 60%
                     ),
                     radial-gradient(
                         900px 600px at 85% 0%,
-                        rgba(0, 0, 0, 0.05),
+                        rgba(100, 130, 180, 0.05),
                         transparent 55%
                     ),
                     var(--bg);
@@ -70,8 +70,8 @@
             }
 
             .card {
-                background: color-mix(in srgb, var(--paper) 92%, white 8%);
-                border: 1px solid rgba(0, 0, 0, 0.06);
+                background: color-mix(in srgb, var(--paper) 92%, #1e2535 8%);
+                border: 1px solid rgba(255, 255, 255, 0.06);
                 border-radius: var(--radius);
                 box-shadow: var(--shadow);
                 padding: 2.2rem;
@@ -172,9 +172,9 @@
                 margin-top: 0.9rem;
             }
             .pill {
-                border: 1px solid rgba(44, 74, 110, 0.22);
-                color: color-mix(in srgb, var(--accent) 92%, black 8%);
-                background: rgba(44, 74, 110, 0.06);
+                border: 1px solid rgba(122, 162, 212, 0.25);
+                color: color-mix(in srgb, var(--accent) 92%, white 8%);
+                background: rgba(122, 162, 212, 0.1);
                 padding: 0.35rem 0.6rem;
                 border-radius: 999px;
                 font-size: 0.83rem;
@@ -235,13 +235,13 @@
                 gap: 0.55rem;
                 border-radius: 999px;
                 padding: 0.55rem 0.9rem;
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                background: white;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: rgba(255, 255, 255, 0.05);
                 color: var(--ink);
                 font-size: 0.9rem;
             }
             .btn:hover {
-                border-color: rgba(44, 74, 110, 0.35);
+                border-color: rgba(122, 162, 212, 0.45);
                 color: var(--accent);
             }
             .kbd {
@@ -250,10 +250,10 @@
                     "Liberation Mono", monospace;
                 font-size: 0.85em;
                 padding: 0.12rem 0.35rem;
-                border: 1px solid rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.1);
                 border-bottom-width: 2px;
                 border-radius: 6px;
-                background: rgba(0, 0, 0, 0.03);
+                background: rgba(255, 255, 255, 0.05);
                 color: color-mix(in srgb, var(--ink) 90%, var(--muted) 10%);
             }
         </style>
@@ -635,8 +635,7 @@
                         <div class="item">
                             <h3>ML / AI</h3>
                             <p class="small">
-                                LLMs (Claude, GPT-4, LLaMA) · Transformers ·
-                                BERT · T5 · RAG · Fine-tuning · Reinforcement
+                                Transformers Models · RAG · Fine-tuning . Post-training · Reinforcement
                                 Learning
                             </p>
                         </div>
@@ -652,7 +651,7 @@
                         <div class="item">
                             <h3>Cloud / DevOps</h3>
                             <p class="small">
-                                AWS (EC2, S3, Lambda) · Docker · GitHub · CI/CD
+                                AWS · Docker · GitHub · CI/CD
                             </p>
                         </div>
 
