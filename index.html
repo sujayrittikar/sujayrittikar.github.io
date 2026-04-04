@@ -9,7 +9,6 @@
             content="Sujay Uday Rittikar - MSc (Thesis) Applied Computer Science. Multilingual NLP, multimodal AI, and production systems."
         />
 
-        <!-- Quiet academic pairing: serif for headings, sans for body -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -19,15 +18,18 @@
 
         <style>
             :root {
-                --bg: #0f1117;
-                --paper: #161b27;
-                --ink: #e2e8f0;
-                --muted: #8892a4;
-                --rule: #2a3344;
-                --accent: #7aa2d4;
-                --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-                --radius: 18px;
+                --bg: #07091a;
+                --paper: #0c0f24;
+                --ink: #e8f5f3;
+                --muted: #6e8a87;
+                --rule: #1a2430;
+                --accent: #2dd4bf;
+                --accent2: #b79eff;
+                --accent3: #7ecfff;
+                --shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+                --radius: 16px;
             }
+
             * {
                 box-sizing: border-box;
             }
@@ -39,14 +41,19 @@
                 margin: 0;
                 background:
                     radial-gradient(
-                        1200px 600px at 15% 10%,
-                        rgba(122, 162, 212, 0.07),
+                        ellipse 900px 500px at 15% 0%,
+                        rgba(45, 212, 191, 0.07),
                         transparent 60%
                     ),
                     radial-gradient(
-                        900px 600px at 85% 0%,
-                        rgba(100, 130, 180, 0.05),
+                        ellipse 700px 400px at 85% 5%,
+                        rgba(183, 158, 255, 0.06),
                         transparent 55%
+                    ),
+                    radial-gradient(
+                        ellipse 1200px 300px at 50% 100%,
+                        rgba(126, 207, 255, 0.04),
+                        transparent 65%
                     ),
                     var(--bg);
                 color: var(--ink);
@@ -61,24 +68,94 @@
                 line-height: 1.65;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
+                overflow-x: hidden;
+            }
+
+            /* Subtle dot grid */
+            body::after {
+                content: '';
+                position: fixed;
+                inset: 0;
+                background-image: radial-gradient(
+                    circle,
+                    rgba(45, 212, 191, 0.06) 1px,
+                    transparent 1px
+                );
+                background-size: 40px 40px;
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            /* ─── Yin-yang watermark ─────────────────────── */
+            .yinyang-bg {
+                position: fixed;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                pointer-events: none;
+                z-index: 0;
+            }
+            .yinyang-bg svg {
+                width: 640px;
+                height: 640px;
+                animation: yyRotate 90s linear infinite;
+                opacity: 1;
+            }
+            @keyframes yyRotate {
+                from { transform: rotate(0deg); }
+                to   { transform: rotate(360deg); }
             }
 
             main {
                 max-width: 920px;
                 margin: 0 auto;
                 padding: 4.25rem 1.5rem 6rem;
+                position: relative;
+                z-index: 1;
             }
 
             .card {
-                background: color-mix(in srgb, var(--paper) 92%, #1e2535 8%);
-                border: 1px solid rgba(255, 255, 255, 0.06);
+                background: linear-gradient(
+                    135deg,
+                    rgba(45, 212, 191, 0.025) 0%,
+                    var(--paper) 35%,
+                    rgba(183, 158, 255, 0.02) 100%
+                );
+                border: 1px solid rgba(45, 212, 191, 0.12);
                 border-radius: var(--radius);
                 box-shadow: var(--shadow);
                 padding: 2.2rem;
+                position: relative;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .card:hover {
+                border-color: rgba(45, 212, 191, 0.28);
+                box-shadow: var(--shadow), 0 0 40px rgba(45, 212, 191, 0.05);
             }
 
             header.card {
                 padding: 2.6rem 2.2rem;
+            }
+
+            /* Gradient top shimmer line on header */
+            header.card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 10%;
+                right: 10%;
+                height: 1.5px;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--accent),
+                    var(--accent2),
+                    var(--accent3),
+                    transparent
+                );
+                border-radius: 0 0 4px 4px;
             }
 
             h1 {
@@ -87,7 +164,16 @@
                 font-size: clamp(2rem, 3vw, 2.7rem);
                 letter-spacing: 0.02em;
                 margin: 0 0 0.35rem 0;
+                background: linear-gradient(
+                    135deg,
+                    var(--ink) 30%,
+                    var(--accent) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
+
             .subtitle {
                 color: var(--muted);
                 font-size: 0.98rem;
@@ -106,12 +192,17 @@
             }
             .topline a {
                 color: var(--accent);
+                transition: color 0.2s;
+            }
+            .topline a:hover {
+                color: var(--accent2);
             }
 
             a {
                 color: var(--accent);
                 text-decoration: none;
                 border-bottom: 1px solid transparent;
+                transition: border-color 0.2s, color 0.2s;
             }
             a:hover {
                 border-bottom-color: var(--accent);
@@ -138,6 +229,7 @@
             section {
                 margin-top: 1.5rem;
             }
+
             .section-title {
                 display: flex;
                 align-items: baseline;
@@ -149,10 +241,25 @@
                 font-weight: 400;
                 font-size: 1.55rem;
                 margin: 0;
+                position: relative;
+                padding-left: 0.85rem;
+            }
+            /* Gradient left-bar accent on section titles */
+            .section-title h2::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 15%;
+                height: 70%;
+                width: 2.5px;
+                border-radius: 2px;
+                background: linear-gradient(to bottom, var(--accent), var(--accent2));
             }
             .section-title .hint {
-                color: var(--muted);
-                font-size: 0.9rem;
+                color: var(--accent);
+                font-size: 0.85rem;
+                opacity: 0.6;
+                letter-spacing: 0.04em;
             }
 
             .rule {
@@ -172,13 +279,27 @@
                 margin-top: 0.9rem;
             }
             .pill {
-                border: 1px solid rgba(122, 162, 212, 0.25);
-                color: color-mix(in srgb, var(--accent) 92%, white 8%);
-                background: rgba(122, 162, 212, 0.1);
-                padding: 0.35rem 0.6rem;
+                border: 1px solid rgba(45, 212, 191, 0.28);
+                color: var(--accent);
+                background: rgba(45, 212, 191, 0.07);
+                padding: 0.3rem 0.7rem;
                 border-radius: 999px;
-                font-size: 0.83rem;
+                font-size: 0.82rem;
                 white-space: nowrap;
+                transition: background 0.2s, border-color 0.2s;
+            }
+            .pill:nth-child(even) {
+                border-color: rgba(183, 158, 255, 0.28);
+                color: var(--accent2);
+                background: rgba(183, 158, 255, 0.07);
+            }
+            .pill:hover {
+                background: rgba(45, 212, 191, 0.14);
+                border-color: rgba(45, 212, 191, 0.5);
+            }
+            .pill:nth-child(even):hover {
+                background: rgba(183, 158, 255, 0.14);
+                border-color: rgba(183, 158, 255, 0.5);
             }
 
             .item {
@@ -188,18 +309,35 @@
                 margin: 0;
                 font-weight: 600;
                 font-size: 1rem;
+                transition: color 0.2s;
             }
             .meta {
                 color: var(--muted);
                 font-size: 0.9rem;
                 margin: 0.2rem 0 0.35rem;
             }
+
+            /* Diamond bullet points */
             ul {
+                list-style: none;
                 margin: 0.45rem 0 0;
-                padding-left: 1.1rem;
+                padding-left: 1.2rem;
             }
             li {
                 margin: 0.32rem 0;
+                position: relative;
+            }
+            li::before {
+                content: '';
+                position: absolute;
+                left: -1rem;
+                top: 0.58em;
+                width: 5px;
+                height: 5px;
+                border-radius: 1px;
+                background: linear-gradient(135deg, var(--accent), var(--accent2));
+                transform: rotate(45deg);
+                opacity: 0.65;
             }
 
             .two-col {
@@ -218,11 +356,14 @@
                 color: var(--muted);
                 font-size: 0.85rem;
                 text-align: center;
+                opacity: 0.6;
             }
+
             .small {
                 font-size: 0.88rem;
                 color: var(--muted);
             }
+
             .btns {
                 display: flex;
                 flex-wrap: wrap;
@@ -234,16 +375,21 @@
                 align-items: center;
                 gap: 0.55rem;
                 border-radius: 999px;
-                padding: 0.55rem 0.9rem;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                background: rgba(255, 255, 255, 0.05);
+                padding: 0.5rem 1rem;
+                border: 1px solid rgba(45, 212, 191, 0.18);
+                background: rgba(45, 212, 191, 0.05);
                 color: var(--ink);
-                font-size: 0.9rem;
+                font-size: 0.88rem;
+                transition: border-color 0.25s, background 0.25s, color 0.25s, box-shadow 0.25s;
             }
             .btn:hover {
-                border-color: rgba(122, 162, 212, 0.45);
+                border-color: rgba(45, 212, 191, 0.5);
+                border-bottom-color: rgba(45, 212, 191, 0.5);
+                background: rgba(45, 212, 191, 0.1);
                 color: var(--accent);
+                box-shadow: 0 0 14px rgba(45, 212, 191, 0.18);
             }
+
             .kbd {
                 font-family:
                     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -256,10 +402,85 @@
                 background: rgba(255, 255, 255, 0.05);
                 color: color-mix(in srgb, var(--ink) 90%, var(--muted) 10%);
             }
+
+            /* Skill category headings in aside */
+            #skills .item h3 {
+                color: var(--accent);
+                font-size: 0.92rem;
+                font-weight: 500;
+            }
+
+            /* Publication / item h3 links */
+            .item h3 a {
+                color: var(--accent2);
+                border-bottom: 1px solid rgba(183, 158, 255, 0.25);
+            }
+            .item h3 a:hover {
+                color: var(--accent);
+                border-bottom-color: var(--accent);
+            }
+
+            /* ─── Floating particles ─────────────────────── */
+            .particle-container {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 0;
+                overflow: hidden;
+            }
+            .particle {
+                position: absolute;
+                bottom: -20px;
+                border-radius: 50%;
+                background: radial-gradient(
+                    circle at 40% 40%,
+                    rgba(45, 212, 191, 0.8),
+                    rgba(45, 212, 191, 0.1)
+                );
+                opacity: 0;
+                animation: particleFloat linear infinite;
+            }
+            @keyframes particleFloat {
+                0%   { transform: translateY(0)     translateX(0)    scale(1);    opacity: 0;    }
+                8%   { opacity: 0.45; }
+                88%  { opacity: 0.15; }
+                100% { transform: translateY(-95vh) translateX(30px) scale(0.4);  opacity: 0;    }
+            }
         </style>
     </head>
 
     <body>
+        <!-- Yin-yang watermark -->
+        <div class="yinyang-bg" aria-hidden="true">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <!-- outer ring -->
+                <circle cx="50" cy="50" r="49" fill="none"
+                    stroke="rgba(45,212,191,0.13)" stroke-width="0.6"/>
+                <!-- yin half -->
+                <path d="M50,1
+                    A49,49 0 0,0 50,99
+                    A24.5,24.5 0 0,0 50,50
+                    A24.5,24.5 0 0,1 50,1 Z"
+                    fill="rgba(45,212,191,0.05)"/>
+                <!-- yang half -->
+                <path d="M50,1
+                    A49,49 0 0,1 50,99
+                    A24.5,24.5 0 0,1 50,50
+                    A24.5,24.5 0 0,0 50,1 Z"
+                    fill="rgba(45,212,191,0.09)"/>
+                <!-- inner rings (S-curve circles) -->
+                <circle cx="50" cy="25" r="24.5" fill="none"
+                    stroke="rgba(45,212,191,0.07)" stroke-width="0.5"/>
+                <circle cx="50" cy="75" r="24.5" fill="none"
+                    stroke="rgba(45,212,191,0.07)" stroke-width="0.5"/>
+                <!-- dots -->
+                <circle cx="50" cy="25" r="7"
+                    fill="rgba(45,212,191,0.05)"/>
+                <circle cx="50" cy="75" r="7"
+                    fill="rgba(45,212,191,0.13)"/>
+            </svg>
+        </div>
+
         <main>
             <!-- HERO -->
             <header class="card">
@@ -277,7 +498,6 @@
                         >suj00rit20@gmail.com</a
                     >
                     <span>·</span>
-                    <!-- Replace these two links with your real URLs -->
                     <a
                         href="https://github.com/sujayrittikar"
                         target="_blank"
@@ -294,7 +514,6 @@
                 </div>
 
                 <div class="btns" aria-label="Quick actions">
-                    <!-- Optional: upload your PDF CV into this repo and set href to it, e.g. href="Sujay_Rittikar_CV.pdf" -->
                     <a
                         class="btn"
                         href="#publications"
@@ -730,6 +949,37 @@
         <script>
             document.getElementById("year").textContent =
                 new Date().getFullYear();
+
+            // Floating teal particles (chi/energy orbs)
+            (function () {
+                const container = document.createElement("div");
+                container.className = "particle-container";
+                document.body.insertBefore(container, document.body.firstChild);
+
+                const config = [
+                    { left:  6, delay:  0, dur: 18, size: 4 },
+                    { left: 18, delay:  5, dur: 24, size: 3 },
+                    { left: 30, delay: 10, dur: 16, size: 5 },
+                    { left: 42, delay:  2, dur: 20, size: 3 },
+                    { left: 55, delay: 14, dur: 22, size: 4 },
+                    { left: 67, delay:  7, dur: 17, size: 3 },
+                    { left: 79, delay:  3, dur: 25, size: 5 },
+                    { left: 91, delay: 11, dur: 19, size: 3 },
+                    { left: 12, delay: 18, dur: 21, size: 4 },
+                    { left: 73, delay: 22, dur: 15, size: 3 },
+                ];
+
+                config.forEach(function (c) {
+                    const p = document.createElement("div");
+                    p.className = "particle";
+                    p.style.left = c.left + "vw";
+                    p.style.width  = c.size + "px";
+                    p.style.height = c.size + "px";
+                    p.style.animationDelay    = c.delay + "s";
+                    p.style.animationDuration = c.dur   + "s";
+                    container.appendChild(p);
+                });
+            })();
         </script>
     </body>
 </html>
