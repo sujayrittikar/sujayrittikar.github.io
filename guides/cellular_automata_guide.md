@@ -57,7 +57,7 @@ Before writing a single line, answer these:
 2. What if it has 3 states and a 5-cell neighbourhood?
 3. Why must *all* cells update at the same time (synchronously)?
 
-*(Answers are at the bottom of this section — try first!)*
+*(Answers are at the bottom of this section - try first!)*
 
 <details>
 <summary>Answers</summary>
@@ -72,7 +72,7 @@ Before writing a single line, answer these:
 
 ## 2. 1D Elementary CA - Wolfram Rules
 
-Stephen Wolfram catalogued all 256 possible 1D binary CA with a 3-cell neighbourhood (left, self, right). Each rule is named by its **rule number** (0–255), derived from its binary representation.
+Stephen Wolfram catalogued all 256 possible 1D binary CA with a 3-cell neighbourhood (left, self, right). Each rule is named by its **rule number** (0-255), derived from its binary representation.
 
 ### How Rule Numbers Work
 
@@ -98,7 +98,7 @@ def elementary_ca(rule_number: int, width: int = 101, steps: int = 50) -> np.nda
         steps:       Number of time steps
   
     Returns:
-        2D array of shape (steps, width) — rows are time steps
+        2D array of shape (steps, width) - rows are time steps
     """
     # Decode rule into a lookup table
     rule_bits = np.array([(rule_number >> i) & 1 for i in range(8)], dtype=np.uint8)
@@ -126,7 +126,7 @@ def elementary_ca(rule_number: int, width: int = 101, steps: int = 50) -> np.nda
 def plot_ca(grid: np.ndarray, rule_number: int):
     plt.figure(figsize=(12, 6))
     plt.imshow(grid, cmap='binary', interpolation='nearest', aspect='auto')
-    plt.title(f'Elementary CA — Rule {rule_number}', fontsize=14)
+    plt.title(f'Elementary CA - Rule {rule_number}', fontsize=14)
     plt.xlabel('Cell index')
     plt.ylabel('Time step →')
     plt.tight_layout()
@@ -152,14 +152,14 @@ for rule in [30, 90, 110, 184]:
 
 ---
 
-### 🔥 Challenge 2 — Rule Algebra
+### 🔥 Challenge 2 - Rule Algebra
 
 ```python
 # 1. Implement a function that takes TWO rules and returns their XOR-composite rule:
 #    composite(rule_a, rule_b): for each neighbourhood, apply rule_a THEN rule_b
 #    Does the order matter?
 
-# 2. Find all "totalistic" rules among the 256 elementary rules —
+# 2. Find all "totalistic" rules among the 256 elementary rules -
 #    i.e., rules whose output depends only on the SUM of the neighbourhood,
 #    not the left-right arrangement.
 #    Hint: neighbourhoods (1,0,0) and (0,0,1) have the same sum.
@@ -198,10 +198,10 @@ def apply_boundary(grid: np.ndarray, mode: str = 'periodic') -> np.ndarray:
     Pad a 2D grid to handle boundary conditions.
   
     Modes:
-      'periodic'  — wrap around (toroidal)
-      'fixed-0'   — dead cells outside
-      'fixed-1'   — live cells outside
-      'mirror'    — reflect at edges
+      'periodic'  - wrap around (toroidal)
+      'fixed-0'   - dead cells outside
+      'fixed-1'   - live cells outside
+      'mirror'    - reflect at edges
     """
     if mode == 'periodic':
         return np.pad(grid, 1, mode='wrap')
@@ -260,7 +260,7 @@ plt.show()
 
 # 2. For 2D: implement BOTH Von Neumann and Moore step functions.
 
-# 3. Create a "null boundary" — a grid that grows by 1 cell on each side
+# 3. Create a "null boundary" - a grid that grows by 1 cell on each side
 #    each step (infinite grid, but only track non-zero cells).
 #    Hint: use a dict {(x,y): state} instead of a numpy array.
 ```
@@ -312,13 +312,13 @@ def animate_life(rows: int = 60, cols: int = 80, steps: int = 100, density: floa
     fig, ax = plt.subplots(figsize=(10, 7))
     img = ax.imshow(grid, cmap='binary', interpolation='nearest')
     ax.axis('off')
-    title = ax.set_title('Game of Life — Step 0', fontsize=12)
+    title = ax.set_title('Game of Life - Step 0', fontsize=12)
   
     def update(frame):
         nonlocal grid
         grid = life_step(grid)
         img.set_data(grid)
-        title.set_text(f'Game of Life — Step {frame}')
+        title.set_text(f'Game of Life - Step {frame}')
         return [img, title]
   
     anim = animation.FuncAnimation(fig, update, frames=steps,
@@ -359,7 +359,7 @@ PATTERNS = {
         [1, 1, 0],
         [0, 1, 0]
     ]),
-    'glider_gun': np.array([  # Gosper's glider gun (partial — look up full 36-cell version)
+    'glider_gun': np.array([  # Gosper's glider gun (partial - look up full 36-cell version)
         # ... (36 cells, spawn gliders endlessly)
     ])
 }
@@ -385,7 +385,7 @@ def demo_glider():
         for _ in range(4):
             grid = life_step(grid)
   
-    plt.suptitle('Glider — moves diagonally every 4 steps', fontsize=13)
+    plt.suptitle('Glider - moves diagonally every 4 steps', fontsize=13)
     plt.tight_layout()
     plt.savefig('glider.png', dpi=150)
     plt.show()
@@ -412,7 +412,7 @@ demo_glider()
 #    Plot: final alive-cell fraction vs. initial density.
 #    Is there a "critical density" where behaviour changes abruptly?
 
-# 3. LIFE VARIANTS — implement these rule changes and observe:
+# 3. LIFE VARIANTS - implement these rule changes and observe:
 #    a) "HighLife":  born on 3 or 6, survive on 2 or 3
 #    b) "Day & Night": born on 3,6,7,8; survive on 3,4,6,7,8
 #    c) "Seeds":    born on 2, nothing survives
@@ -497,7 +497,7 @@ plt.show()
 #    coloured by final density.
 
 # 2. IMPLEMENT 1D OUTER-TOTALISTIC CA
-#    For radius r=1 (3 neighbours), the totalistic sum ranges from 0–3.
+#    For radius r=1 (3 neighbours), the totalistic sum ranges from 0-3.
 #    Enumerate ALL outer-totalistic rules and classify them
 #    by Wolfram class (see Section 6).
 
@@ -514,10 +514,10 @@ plt.show()
 Wolfram identified four behavioural classes for CA, based on long-run dynamics:
 
 ```
-Class I   — Fixed point.      All patterns collapse to uniform state.   e.g. Rule 0, 255
-Class II  — Periodic.         Stable or oscillating structures.          e.g. Rule 4, 108
-Class III — Chaotic.          Pseudo-random, sensitive to initial cond.  e.g. Rule 30, 126
-Class IV  — Complex / Edge of chaos.  Long-lived, structure-rich.       e.g. Rule 110, Life
+Class I   - Fixed point.      All patterns collapse to uniform state.   e.g. Rule 0, 255
+Class II  - Periodic.         Stable or oscillating structures.          e.g. Rule 4, 108
+Class III - Chaotic.          Pseudo-random, sensitive to initial cond.  e.g. Rule 30, 126
+Class IV  - Complex / Edge of chaos.  Long-lived, structure-rich.       e.g. Rule 110, Life
 ```
 
 ### Measuring Class Automatically
@@ -579,7 +579,7 @@ sc = plt.scatter(lambdas, change_vars, c=densities, cmap='viridis',
 plt.colorbar(sc, label='Final density')
 plt.xlabel("Langton's λ")
 plt.ylabel('Change-rate variance (proxy for chaos)')
-plt.title('All 256 Elementary CA Rules — λ vs Complexity')
+plt.title('All 256 Elementary CA Rules - λ vs Complexity')
 
 # Annotate famous rules
 for rule in [30, 90, 110, 184, 0, 255]:
@@ -594,7 +594,7 @@ plt.show()
 
 ---
 
-### 🔥 Challenge 6 — Edge of Chaos
+### 🔥 Challenge 6 - Edge of Chaos
 
 ```python
 # The "edge of chaos" hypothesis (Langton, 1990):
@@ -681,13 +681,13 @@ for ax, (rule, label) in zip(axes.flat, rule_examples):
     entropies = [local_entropy(grid[t], k=3) for t in range(steps)]
   
     ax.plot(entropies, color='steelblue', linewidth=1.5)
-    ax.set_title(f'Rule {rule} — {label}')
+    ax.set_title(f'Rule {rule} - {label}')
     ax.set_xlabel('Time step')
     ax.set_ylabel('3-gram Shannon entropy')
     ax.set_ylim(0, 3.1)
     ax.grid(True, alpha=0.3)
 
-plt.suptitle('Entropy over time — Wolfram Class comparison', fontsize=13)
+plt.suptitle('Entropy over time - Wolfram Class comparison', fontsize=13)
 plt.tight_layout()
 plt.savefig('entropy_profiles.png', dpi=150)
 plt.show()
@@ -695,7 +695,7 @@ plt.show()
 
 ---
 
-### 🔥 Challenge 7 — Information Theory of CA
+### 🔥 Challenge 7 - Information Theory of CA
 
 ```python
 # 1. LEMPEL-ZIV COMPLEXITY
@@ -712,7 +712,7 @@ plt.show()
 
 # 3. CAUSAL STATES & ε-MACHINES
 #    The theory of Computational Mechanics (Crutchfield & Young, 1989)
-#    defines "causal states" — equivalence classes of histories that predict the future.
+#    defines "causal states" - equivalence classes of histories that predict the future.
 #    Given Rule 110 output, empirically cluster past k-grams by conditional
 #    futures and count how many causal states emerge.
 #    This is a research-level challenge!
@@ -720,7 +720,7 @@ plt.show()
 
 ---
 
-## 8. Beyond Binary — Multi-State CA
+## 8. Beyond Binary - Multi-State CA
 
 ### Cyclic CA
 
@@ -806,7 +806,7 @@ def brians_brain_step(grid: np.ndarray) -> np.ndarray:
 
 ---
 
-### 🔥 Challenge 8 — Multi-State Dynamics
+### 🔥 Challenge 8 - Multi-State Dynamics
 
 ```python
 # 1. CYCLIC CA PHASE DIAGRAM
@@ -838,7 +838,7 @@ def brians_brain_step(grid: np.ndarray) -> np.ndarray:
 
 ## 9. Reversible CA & Conservation Laws
 
-A CA is **reversible** if you can always reconstruct the previous state from the current one — i.e., the update function is a bijection.
+A CA is **reversible** if you can always reconstruct the previous state from the current one - i.e., the update function is a bijection.
 
 ### Second-Order (Margolus) CA
 
@@ -908,7 +908,7 @@ def verify_reversibility(rule_fn, grid, steps=20):
 
 ---
 
-### 🔥 Challenge 9 — Conservation & Reversibility
+### 🔥 Challenge 9 - Conservation & Reversibility
 
 ```python
 # 1. VERIFY PARTICLE CONSERVATION in Critters:
@@ -933,7 +933,7 @@ def verify_reversibility(rule_fn, grid, steps=20):
 
 Continuous CA replace discrete states with real-valued fields, often using convolution with a smooth kernel and a non-linear activation.
 
-### Lenia — A Continuous Life
+### Lenia - A Continuous Life
 
 ```python
 def lenia_step(grid: np.ndarray, kernel: np.ndarray, 
@@ -993,7 +993,7 @@ def demo_lenia():
     size   = 100
     kernel = make_lenia_kernel(size=25, beta=[1.0])
   
-    # "Orbium" — a glider-like creature in Lenia
+    # "Orbium" - a glider-like creature in Lenia
     grid = np.zeros((size, size))
     cx, cy = size // 2, size // 2
     r = 7
@@ -1008,7 +1008,7 @@ def demo_lenia():
         for _ in range(30):
             grid = lenia_step(grid, kernel)
   
-    plt.suptitle('Lenia — Continuous CA Life-like System', fontsize=13)
+    plt.suptitle('Lenia - Continuous CA Life-like System', fontsize=13)
     plt.tight_layout()
     plt.savefig('lenia.png', dpi=150)
     plt.show()
@@ -1089,7 +1089,7 @@ demo_gray_scott(F=0.078, k=0.061)
 
 ---
 
-### 🔥 Challenge 10 — Continuous Worlds
+### 🔥 Challenge 10 - Continuous Worlds
 
 ```python
 # 1. GRAY-SCOTT PHASE DIAGRAM
