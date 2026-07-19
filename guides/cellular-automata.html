@@ -12,7 +12,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap"
             rel="stylesheet"
         />
 
@@ -21,196 +21,249 @@
         <!-- highlight.js for code blocks -->
         <link
             rel="stylesheet"
+            media="(prefers-color-scheme: light)"
+            href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css"
+        />
+        <link
+            rel="stylesheet"
+            media="(prefers-color-scheme: dark)"
             href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css"
         />
         <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
 
         <style>
             :root {
-                --bg: #07091a;
-                --paper: #0c0f24;
-                --ink: #e8f5f3;
-                --muted: #6e8a87;
-                --rule: #1a2430;
-                --accent: #2dd4bf;
-                --accent2: #b79eff;
-                --shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-                --radius: 16px;
+                --bg: #fbf9f4;
+                --ink: #201d19;
+                --muted: #6d665c;
+                --faint: #8d857a;
+                --rule: #ddd6c9;
+                --rule-soft: #eae4d8;
+                --accent: #9a4f26;
+                --surface: #f4f0e7;
             }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --bg: #16150f;
+                    --ink: #e6e0d3;
+                    --muted: #a09889;
+                    --faint: #857d6f;
+                    --rule: #3a352c;
+                    --rule-soft: #2a261f;
+                    --accent: #d08a55;
+                    --surface: #1d1b15;
+                }
+            }
+
             * {
                 box-sizing: border-box;
             }
-            html, body {
-                height: 100%;
-            }
+
             body {
                 margin: 0;
-                background:
-                    radial-gradient(
-                        ellipse 900px 500px at 15% 0%,
-                        rgba(45, 212, 191, 0.07),
-                        transparent 60%
-                    ),
-                    radial-gradient(
-                        ellipse 700px 400px at 85% 5%,
-                        rgba(183, 158, 255, 0.06),
-                        transparent 55%
-                    ),
-                    var(--bg);
+                background: var(--bg);
                 color: var(--ink);
-                font-family:
-                    "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                font-family: "Crimson Pro", Charter, Georgia, Cambria,
+                    "Times New Roman", serif;
+                font-size: 19px;
                 line-height: 1.65;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
             }
 
             main {
-                max-width: 860px;
+                max-width: 720px;
                 margin: 0 auto;
-                padding: 3rem 1.5rem 6rem;
+                padding: 3.5rem 1.75rem 6rem;
             }
 
+            /* ─── Breadcrumb ──────────────────────────────── */
+
             nav {
-                margin-bottom: 2rem;
-                font-size: 0.9rem;
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.78rem;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                color: var(--faint);
+                padding-bottom: 0.85rem;
+                border-bottom: 3px double var(--rule);
+                margin-bottom: 2.5rem;
             }
             nav a {
-                color: var(--accent);
+                color: var(--muted);
                 text-decoration: none;
                 border-bottom: 1px solid transparent;
             }
             nav a:hover {
+                color: var(--accent);
                 border-bottom-color: var(--accent);
             }
             nav .sep {
-                color: var(--muted);
-                margin: 0 0.4rem;
+                color: var(--rule);
+                margin: 0 0.5rem;
             }
 
+            /* The old card is now just the page itself. */
             .card {
-                background: var(--paper);
-                border: 1px solid rgba(255, 255, 255, 0.06);
-                border-radius: var(--radius);
-                box-shadow: var(--shadow);
-                padding: 2.8rem 3rem;
-            }
-            @media (max-width: 700px) {
-                .card {
-                    padding: 1.6rem;
-                }
+                padding: 0;
             }
 
-            /* Markdown content styles */
+            /* ─── Markdown content ────────────────────────── */
+
             .content h1 {
-                font-family: "Crimson Pro", serif;
-                font-weight: 400;
-                font-size: clamp(1.8rem, 3vw, 2.5rem);
-                letter-spacing: 0.02em;
-                margin: 0 0 0.5rem;
-                line-height: 1.2;
+                font-weight: 600;
+                font-size: clamp(1.9rem, 4vw, 2.5rem);
+                letter-spacing: -0.015em;
+                line-height: 1.18;
+                margin: 0 0 1.75rem;
+                padding-bottom: 1.25rem;
+                border-bottom: 1px solid var(--rule);
             }
             .content h2 {
-                font-family: "Crimson Pro", serif;
-                font-weight: 400;
-                font-size: 1.55rem;
-                margin: 2.2rem 0 0.7rem;
-                padding-bottom: 0.3rem;
-                border-bottom: 1px solid var(--rule);
+                font-weight: 600;
+                font-size: 1.5rem;
+                letter-spacing: -0.01em;
+                margin: 2.75rem 0 0.75rem;
             }
             .content h3 {
                 font-weight: 600;
-                font-size: 1.05rem;
-                margin: 1.6rem 0 0.4rem;
+                font-size: 1.12rem;
+                margin: 1.9rem 0 0.4rem;
             }
             .content h4 {
-                font-weight: 600;
-                font-size: 0.95rem;
-                margin: 1.2rem 0 0.3rem;
-                color: var(--muted);
+                font-family: "Inter", system-ui, sans-serif;
+                font-weight: 500;
+                font-size: 0.78rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: var(--faint);
+                margin: 1.5rem 0 0.35rem;
             }
             .content p {
-                margin: 0.7rem 0;
+                margin: 0.85rem 0;
             }
             .content a {
                 color: var(--accent);
                 text-decoration: none;
-                border-bottom: 1px solid transparent;
+                border-bottom: 1px solid var(--rule);
             }
             .content a:hover {
                 border-bottom-color: var(--accent);
             }
-            .content ul, .content ol {
+            .content ul,
+            .content ol {
                 padding-left: 1.4rem;
-                margin: 0.5rem 0;
+                margin: 0.6rem 0;
             }
             .content li {
                 margin: 0.3rem 0;
             }
+            .content li::marker {
+                color: var(--faint);
+            }
+            .content strong {
+                font-weight: 600;
+            }
+
             .content code {
-                font-family:
-                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-                    "Liberation Mono", monospace;
-                font-size: 0.85em;
-                padding: 0.12rem 0.35rem;
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 4px;
-                background: rgba(255, 255, 255, 0.05);
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+                    Consolas, "Liberation Mono", monospace;
+                font-size: 0.82em;
+                padding: 0.1rem 0.32rem;
+                border: 1px solid var(--rule-soft);
+                border-radius: 3px;
+                background: var(--surface);
             }
             .content pre {
-                background: #0a0d1f;
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 10px;
+                background: var(--surface);
+                border: 1px solid var(--rule-soft);
+                border-left: 2px solid var(--rule);
+                border-radius: 3px;
                 padding: 1.1rem 1.3rem;
                 overflow-x: auto;
-                margin: 1rem 0;
+                margin: 1.2rem 0;
+                line-height: 1.55;
             }
             .content pre code {
                 background: none;
                 border: none;
                 padding: 0;
-                font-size: 0.875rem;
+                font-size: 0.8rem;
             }
+
             .content blockquote {
-                border-left: 3px solid var(--accent);
-                margin: 1rem 0;
-                padding: 0.4rem 1rem;
+                border-left: 2px solid var(--rule);
+                margin: 1.2rem 0;
+                padding: 0.1rem 0 0.1rem 1.1rem;
                 color: var(--muted);
-                background: rgba(45, 212, 191, 0.06);
-                border-radius: 0 6px 6px 0;
+                font-style: italic;
             }
+            .content blockquote p {
+                margin: 0.4rem 0;
+            }
+
             .content table {
                 border-collapse: collapse;
                 width: 100%;
-                margin: 1rem 0;
-                font-size: 0.9rem;
+                margin: 1.3rem 0;
+                font-size: 0.92rem;
+                display: block;
+                overflow-x: auto;
             }
-            .content th, .content td {
-                border: 1px solid var(--rule);
-                padding: 0.5rem 0.8rem;
+            .content th,
+            .content td {
+                border-bottom: 1px solid var(--rule-soft);
+                padding: 0.5rem 0.9rem 0.5rem 0;
                 text-align: left;
+                vertical-align: top;
             }
             .content th {
-                background: rgba(45, 212, 191, 0.08);
-                font-weight: 600;
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.72rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--faint);
+                border-bottom: 1px solid var(--rule);
             }
+
             .content hr {
                 border: none;
-                border-top: 1px solid var(--rule);
-                margin: 2rem 0;
+                border-top: 1px solid var(--rule-soft);
+                margin: 2.5rem 0;
+            }
+
+            .content details {
+                border-left: 2px solid var(--rule);
+                padding: 0.2rem 0 0.2rem 1.1rem;
+                margin: 1rem 0;
+            }
+            .content summary {
+                cursor: pointer;
+                color: var(--accent);
+                font-size: 0.94rem;
+            }
+
+            .content img {
+                max-width: 100%;
+                height: auto;
             }
 
             #loading {
-                text-align: center;
-                padding: 3rem;
-                color: var(--muted);
+                padding: 3rem 0;
+                color: var(--faint);
+                font-style: italic;
             }
 
             footer {
-                margin-top: 2rem;
-                color: var(--muted);
-                font-size: 0.85rem;
-                text-align: center;
+                margin-top: 4rem;
+                padding-top: 1.25rem;
+                border-top: 3px double var(--rule);
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.76rem;
+                color: var(--faint);
             }
         </style>
     </head>

@@ -12,672 +12,550 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap"
             rel="stylesheet"
         />
 
         <style>
             :root {
-                --bg: #07091a;
-                --paper: #0c0f24;
-                --ink: #e8f5f3;
-                --muted: #6e8a87;
-                --rule: #1a2430;
-                --accent: #2dd4bf;
-                --accent2: #b79eff;
-                --accent3: #7ecfff;
-                --shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-                --radius: 16px;
+                --bg: #fbf9f4;
+                --ink: #201d19;
+                --muted: #6d665c;
+                --faint: #8d857a;
+                --rule: #ddd6c9;
+                --rule-soft: #eae4d8;
+                --accent: #9a4f26;
+                --accent-soft: #f0e6da;
+                --measure: 74ch;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --bg: #16150f;
+                    --ink: #e6e0d3;
+                    --muted: #a09889;
+                    --faint: #857d6f;
+                    --rule: #3a352c;
+                    --rule-soft: #2a261f;
+                    --accent: #d08a55;
+                    --accent-soft: #2a2118;
+                }
             }
 
             * {
                 box-sizing: border-box;
             }
-            html,
-            body {
-                height: 100%;
-            }
+
             body {
                 margin: 0;
-                background:
-                    radial-gradient(
-                        ellipse 900px 500px at 15% 0%,
-                        rgba(45, 212, 191, 0.07),
-                        transparent 60%
-                    ),
-                    radial-gradient(
-                        ellipse 700px 400px at 85% 5%,
-                        rgba(183, 158, 255, 0.06),
-                        transparent 55%
-                    ),
-                    radial-gradient(
-                        ellipse 1200px 300px at 50% 100%,
-                        rgba(126, 207, 255, 0.04),
-                        transparent 65%
-                    ),
-                    var(--bg);
+                background: var(--bg);
                 color: var(--ink);
-                font-family:
-                    "Inter",
-                    system-ui,
-                    -apple-system,
-                    Segoe UI,
-                    Roboto,
-                    Arial,
-                    sans-serif;
-                line-height: 1.65;
+                font-family: "Crimson Pro", Charter, Georgia, Cambria,
+                    "Times New Roman", serif;
+                font-size: 19px;
+                line-height: 1.62;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
-                overflow-x: hidden;
-            }
-
-            /* Subtle dot grid */
-            body::after {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background-image: radial-gradient(
-                    circle,
-                    rgba(45, 212, 191, 0.06) 1px,
-                    transparent 1px
-                );
-                background-size: 40px 40px;
-                pointer-events: none;
-                z-index: 0;
-            }
-
-            /* ─── Yin-yang watermark ─────────────────────── */
-            .yinyang-bg {
-                position: fixed;
-                inset: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                pointer-events: none;
-                z-index: 0;
-            }
-            .yinyang-bg svg {
-                width: 640px;
-                height: 640px;
-                animation: yyRotate 90s linear infinite;
-                opacity: 1;
-            }
-            @keyframes yyRotate {
-                from { transform: rotate(0deg); }
-                to   { transform: rotate(360deg); }
+                text-rendering: optimizeLegibility;
             }
 
             main {
-                max-width: 920px;
+                max-width: 860px;
                 margin: 0 auto;
-                padding: 4.25rem 1.5rem 6rem;
-                position: relative;
-                z-index: 1;
-            }
-
-            .card {
-                background: linear-gradient(
-                    135deg,
-                    rgba(45, 212, 191, 0.025) 0%,
-                    var(--paper) 35%,
-                    rgba(183, 158, 255, 0.02) 100%
-                );
-                border: 1px solid rgba(45, 212, 191, 0.12);
-                border-radius: var(--radius);
-                box-shadow: var(--shadow);
-                padding: 2.2rem;
-                position: relative;
-                transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            .card:hover {
-                border-color: rgba(45, 212, 191, 0.28);
-                box-shadow: var(--shadow), 0 0 40px rgba(45, 212, 191, 0.05);
-            }
-
-            header.card {
-                padding: 2.6rem 2.2rem;
-            }
-
-            /* Gradient top shimmer line on header */
-            header.card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 10%;
-                right: 10%;
-                height: 1.5px;
-                background: linear-gradient(
-                    90deg,
-                    transparent,
-                    var(--accent),
-                    var(--accent2),
-                    var(--accent3),
-                    transparent
-                );
-                border-radius: 0 0 4px 4px;
-            }
-
-            h1 {
-                font-family: "Crimson Pro", serif;
-                font-weight: 400;
-                font-size: clamp(2rem, 3vw, 2.7rem);
-                letter-spacing: 0.02em;
-                margin: 0 0 0.35rem 0;
-                background: linear-gradient(
-                    135deg,
-                    var(--ink) 30%,
-                    var(--accent) 100%
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-            }
-
-            .subtitle {
-                color: var(--muted);
-                font-size: 0.98rem;
-                margin: 0 0 1.2rem 0;
-                max-width: 70ch;
-            }
-
-            .topline {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.7rem 1.25rem;
-                align-items: center;
-                margin-top: 0.4rem;
-                color: var(--muted);
-                font-size: 0.95rem;
-            }
-            .topline a {
-                color: var(--accent);
-                transition: color 0.2s;
-            }
-            .topline a:hover {
-                color: var(--accent2);
+                padding: 4.5rem 1.75rem 6rem;
             }
 
             a {
                 color: var(--accent);
                 text-decoration: none;
-                border-bottom: 1px solid transparent;
-                transition: border-color 0.2s, color 0.2s;
+                border-bottom: 1px solid var(--rule);
+                transition: border-color 0.15s ease;
             }
             a:hover {
                 border-bottom-color: var(--accent);
             }
 
-            .grid {
-                display: grid;
-                grid-template-columns: 1.25fr 0.75fr;
-                gap: 1.5rem;
-                margin-top: 1.5rem;
+            /* ─── Masthead ────────────────────────────────── */
+
+            h1 {
+                font-weight: 600;
+                font-size: clamp(2.1rem, 4.5vw, 2.8rem);
+                line-height: 1.15;
+                letter-spacing: -0.015em;
+                margin: 0 0 0.5rem;
             }
-            @media (max-width: 900px) {
-                .grid {
+
+            .standfirst {
+                margin: 0;
+                max-width: 60ch;
+                font-size: 1.06rem;
+                color: var(--muted);
+            }
+
+            .contact-line {
+                margin: 1.1rem 0 0;
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.82rem;
+                color: var(--faint);
+            }
+            .contact-line a {
+                border-bottom-color: var(--rule);
+            }
+            .contact-line .sep {
+                padding: 0 0.55rem;
+                color: var(--rule);
+            }
+
+            /* Double rule: the old-print touch */
+            .masthead-rule {
+                border: none;
+                border-top: 3px double var(--rule);
+                margin: 2rem 0 0;
+            }
+
+            nav.toc {
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.78rem;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                padding: 0.85rem 0;
+                border-bottom: 1px solid var(--rule);
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem 1.5rem;
+            }
+            nav.toc a {
+                color: var(--muted);
+                border-bottom: none;
+            }
+            nav.toc a:hover {
+                color: var(--accent);
+            }
+
+            /* ─── Layout ──────────────────────────────────── */
+
+            .columns {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) 15.5rem;
+                gap: 0 3.25rem;
+                margin-top: 3rem;
+                align-items: start;
+            }
+
+            aside {
+                position: sticky;
+                top: 2.5rem;
+                padding-left: 3.25rem;
+                border-left: 1px solid var(--rule-soft);
+                margin-left: -3.25rem;
+            }
+
+            @media (max-width: 820px) {
+                .columns {
                     grid-template-columns: 1fr;
+                    gap: 0;
                 }
-                header.card {
-                    padding: 2.2rem 1.6rem;
-                }
-                .card {
-                    padding: 1.6rem;
+                aside {
+                    position: static;
+                    padding-left: 0;
+                    margin-left: 0;
+                    border-left: none;
+                    border-top: 3px double var(--rule);
+                    margin-top: 3rem;
+                    padding-top: 2rem;
                 }
             }
 
             section {
-                margin-top: 1.5rem;
+                margin-bottom: 3rem;
             }
 
-            .section-title {
-                display: flex;
-                align-items: baseline;
-                gap: 0.75rem;
-                margin: 0 0 0.9rem 0;
-            }
-            .section-title h2 {
-                font-family: "Crimson Pro", serif;
-                font-weight: 400;
-                font-size: 1.55rem;
-                margin: 0;
-                position: relative;
-                padding-left: 0.85rem;
-            }
-            /* Gradient left-bar accent on section titles */
-            .section-title h2::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 15%;
-                height: 70%;
-                width: 2.5px;
-                border-radius: 2px;
-                background: linear-gradient(to bottom, var(--accent), var(--accent2));
-            }
-            .section-title .hint {
-                color: var(--accent);
-                font-size: 0.85rem;
-                opacity: 0.6;
-                letter-spacing: 0.04em;
+            h2 {
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.75rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.14em;
+                color: var(--faint);
+                margin: 0 0 1.25rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid var(--rule-soft);
             }
 
-            .rule {
-                border: none;
-                border-top: 1px solid var(--rule);
-                margin: 1.35rem 0 1.2rem;
+            p {
+                margin: 0 0 1rem;
+                max-width: var(--measure);
             }
 
-            .lead p {
-                margin: 0.6rem 0;
+            /* ─── Entries ─────────────────────────────────── */
+
+            .entry {
+                margin-bottom: 1.75rem;
+            }
+            .entry:last-child {
+                margin-bottom: 0;
             }
 
-            .pillrow {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                margin-top: 0.9rem;
-            }
-            .pill {
-                border: 1px solid rgba(45, 212, 191, 0.28);
-                color: var(--accent);
-                background: rgba(45, 212, 191, 0.07);
-                padding: 0.3rem 0.7rem;
-                border-radius: 999px;
-                font-size: 0.82rem;
-                white-space: nowrap;
-                transition: background 0.2s, border-color 0.2s;
-            }
-            .pill:nth-child(even) {
-                border-color: rgba(183, 158, 255, 0.28);
-                color: var(--accent2);
-                background: rgba(183, 158, 255, 0.07);
-            }
-            .pill:hover {
-                background: rgba(45, 212, 191, 0.14);
-                border-color: rgba(45, 212, 191, 0.5);
-            }
-            .pill:nth-child(even):hover {
-                background: rgba(183, 158, 255, 0.14);
-                border-color: rgba(183, 158, 255, 0.5);
-            }
-
-            .item {
-                margin: 1rem 0;
-            }
-            .item h3 {
-                margin: 0;
+            .entry h3 {
+                font-size: 1.06rem;
                 font-weight: 600;
-                font-size: 1rem;
-                transition: color 0.2s;
+                margin: 0;
+                line-height: 1.35;
             }
-            .meta {
+            .entry h3 .at {
+                font-weight: 400;
                 color: var(--muted);
-                font-size: 0.9rem;
-                margin: 0.2rem 0 0.35rem;
             }
 
-            /* Diamond bullet points */
+            .meta {
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.76rem;
+                letter-spacing: 0.02em;
+                color: var(--faint);
+                margin: 0.25rem 0 0.5rem;
+            }
+
             ul {
                 list-style: none;
-                margin: 0.45rem 0 0;
-                padding-left: 1.2rem;
+                margin: 0.4rem 0 0;
+                padding-left: 1.15rem;
+                max-width: var(--measure);
             }
             li {
-                margin: 0.32rem 0;
+                margin: 0.3rem 0;
                 position: relative;
             }
             li::before {
-                content: '';
+                content: "·";
                 position: absolute;
-                left: -1rem;
-                top: 0.58em;
-                width: 5px;
-                height: 5px;
-                border-radius: 1px;
-                background: linear-gradient(135deg, var(--accent), var(--accent2));
-                transform: rotate(45deg);
-                opacity: 0.65;
-            }
-
-            .two-col {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1.2rem;
-            }
-            @media (max-width: 700px) {
-                .two-col {
-                    grid-template-columns: 1fr;
-                }
-            }
-
-            footer {
-                margin-top: 2rem;
-                color: var(--muted);
-                font-size: 0.85rem;
+                left: -1.15rem;
+                width: 1.15rem;
                 text-align: center;
-                opacity: 0.6;
+                color: var(--faint);
             }
 
-            .small {
-                font-size: 0.88rem;
+            /* ─── Publications ────────────────────────────── */
+
+            .pub {
+                margin-bottom: 1.4rem;
+                max-width: var(--measure);
+            }
+            .pub .title {
+                font-style: italic;
+            }
+            .pub .authors {
                 color: var(--muted);
             }
-
-            .btns {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.6rem;
-                margin-top: 1.1rem;
+            .pub .venue {
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.76rem;
+                color: var(--faint);
+                margin-top: 0.15rem;
             }
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.55rem;
-                border-radius: 999px;
-                padding: 0.5rem 1rem;
-                border: 1px solid rgba(45, 212, 191, 0.18);
-                background: rgba(45, 212, 191, 0.05);
+            .tag {
+                display: inline-block;
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.68rem;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--accent);
+                background: var(--accent-soft);
+                padding: 0.1rem 0.4rem;
+                border-radius: 2px;
+                vertical-align: 0.08em;
+            }
+
+            /* ─── Sidebar ─────────────────────────────────── */
+
+            aside section {
+                margin-bottom: 2.25rem;
+            }
+            .skill {
+                margin-bottom: 0.85rem;
+                font-size: 0.94rem;
+            }
+            .skill dt {
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.72rem;
+                text-transform: uppercase;
+                letter-spacing: 0.07em;
+                color: var(--faint);
+                margin-bottom: 0.1rem;
+            }
+            .skill dd {
+                margin: 0;
                 color: var(--ink);
-                font-size: 0.88rem;
-                transition: border-color 0.25s, background 0.25s, color 0.25s, box-shadow 0.25s;
             }
-            .btn:hover {
-                border-color: rgba(45, 212, 191, 0.5);
-                border-bottom-color: rgba(45, 212, 191, 0.5);
-                background: rgba(45, 212, 191, 0.1);
-                color: var(--accent);
-                box-shadow: 0 0 14px rgba(45, 212, 191, 0.18);
+            aside ul {
+                padding-left: 1rem;
+                font-size: 0.94rem;
             }
 
-            .kbd {
-                font-family:
-                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-                    "Liberation Mono", monospace;
-                font-size: 0.85em;
-                padding: 0.12rem 0.35rem;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-bottom-width: 2px;
-                border-radius: 6px;
-                background: rgba(255, 255, 255, 0.05);
-                color: color-mix(in srgb, var(--ink) 90%, var(--muted) 10%);
-            }
+            /* ─── Guides ──────────────────────────────────── */
 
-            /* Skill category headings in aside */
-            #skills .item h3 {
-                color: var(--accent);
-                font-size: 0.92rem;
-                font-weight: 500;
+            .guide {
+                padding: 1rem 0;
+                border-top: 1px solid var(--rule-soft);
+                max-width: var(--measure);
             }
-
-            /* Publication / item h3 links */
-            .item h3 a {
-                color: var(--accent2);
-                border-bottom: 1px solid rgba(183, 158, 255, 0.25);
+            .guide:first-of-type {
+                border-top: none;
+                padding-top: 0;
             }
-            .item h3 a:hover {
+            .guide h3 {
+                font-size: 1.06rem;
+                font-weight: 600;
+                margin: 0 0 0.15rem;
+            }
+            .guide h3 a {
+                color: var(--ink);
+                border-bottom-color: var(--rule);
+            }
+            .guide h3 a:hover {
                 color: var(--accent);
                 border-bottom-color: var(--accent);
             }
+            .guide p {
+                margin: 0.35rem 0 0;
+                color: var(--muted);
+                font-size: 0.97rem;
+            }
 
-            /* ─── Floating particles ─────────────────────── */
-            .particle-container {
-                position: fixed;
-                inset: 0;
-                pointer-events: none;
-                z-index: 0;
-                overflow: hidden;
-            }
-            .particle {
-                position: absolute;
-                bottom: -20px;
-                border-radius: 50%;
-                background: radial-gradient(
-                    circle at 40% 40%,
-                    rgba(45, 212, 191, 0.8),
-                    rgba(45, 212, 191, 0.1)
-                );
-                opacity: 0;
-                animation: particleFloat linear infinite;
-            }
-            @keyframes particleFloat {
-                0%   { transform: translateY(0)     translateX(0)    scale(1);    opacity: 0;    }
-                8%   { opacity: 0.45; }
-                88%  { opacity: 0.15; }
-                100% { transform: translateY(-95vh) translateX(30px) scale(0.4);  opacity: 0;    }
+            footer {
+                margin-top: 4rem;
+                padding-top: 1.25rem;
+                border-top: 3px double var(--rule);
+                font-family: "Inter", system-ui, sans-serif;
+                font-size: 0.76rem;
+                color: var(--faint);
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 0.5rem;
             }
         </style>
     </head>
 
     <body>
-        <!-- Yin-yang watermark -->
-        <div class="yinyang-bg" aria-hidden="true">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <!-- outer ring -->
-                <circle cx="50" cy="50" r="49" fill="none"
-                    stroke="rgba(45,212,191,0.13)" stroke-width="0.6"/>
-                <!-- yin half -->
-                <path d="M50,1
-                    A49,49 0 0,0 50,99
-                    A24.5,24.5 0 0,0 50,50
-                    A24.5,24.5 0 0,1 50,1 Z"
-                    fill="rgba(45,212,191,0.05)"/>
-                <!-- yang half -->
-                <path d="M50,1
-                    A49,49 0 0,1 50,99
-                    A24.5,24.5 0 0,1 50,50
-                    A24.5,24.5 0 0,0 50,1 Z"
-                    fill="rgba(45,212,191,0.09)"/>
-                <!-- inner rings (S-curve circles) -->
-                <circle cx="50" cy="25" r="24.5" fill="none"
-                    stroke="rgba(45,212,191,0.07)" stroke-width="0.5"/>
-                <circle cx="50" cy="75" r="24.5" fill="none"
-                    stroke="rgba(45,212,191,0.07)" stroke-width="0.5"/>
-                <!-- dots -->
-                <circle cx="50" cy="25" r="7"
-                    fill="rgba(45,212,191,0.05)"/>
-                <circle cx="50" cy="75" r="7"
-                    fill="rgba(45,212,191,0.13)"/>
-            </svg>
-        </div>
-
         <main>
-            <!-- HERO -->
-            <header class="card">
+            <header>
                 <h1>Sujay Uday Rittikar</h1>
-                <p class="subtitle">
-                    MSc (Thesis) candidate researching multilingual NLP and
-                    reinforcement learning. Building production AI systems
-                    across EdTech, fintech, and real estate domains.
+                <p class="standfirst">
+                    MSc (Thesis) candidate in Applied Computer Science, working
+                    on multilingual NLP and reinforcement learning, and building
+                    production AI systems in EdTech, fintech, and real estate.
                 </p>
 
-                <div class="topline">
-                    <span>Winnipeg, Canada</span>
-                    <span>·</span>
-                    <a href="mailto:suj00rit20@gmail.com"
-                        >suj00rit20@gmail.com</a
-                    >
-                    <span>·</span>
+                <p class="contact-line">
+                    Winnipeg, Canada<span class="sep">/</span>
+                    <a href="mailto:suj00rit20@gmail.com">suj00rit20@gmail.com</a
+                    ><span class="sep">/</span>
                     <a
                         href="https://github.com/sujayrittikar"
                         target="_blank"
                         rel="noreferrer"
                         >GitHub</a
-                    >
-                    <span>·</span>
+                    ><span class="sep">/</span>
                     <a
                         href="https://www.linkedin.com/in/sujay-rittikar-296950128"
                         target="_blank"
                         rel="noreferrer"
                         >LinkedIn</a
                     >
-                </div>
+                </p>
 
-                <div class="btns" aria-label="Quick actions">
-                    <a
-                        class="btn"
-                        href="#publications"
-                        title="Jump to publications"
-                        >Publications</a
-                    >
-                    <a class="btn" href="#experience" title="Jump to experience"
-                        >Experience</a
-                    >
-                    <a class="btn" href="#skills" title="Jump to skills"
-                        >Skills</a
-                    >
-                    <a class="btn" href="#guides" title="Jump to guides"
-                        >Guides</a
-                    >
-                    <a class="btn" href="#contact" title="Jump to contact"
-                        >Contact</a
-                    >
-                </div>
-
-                <div class="pillrow" aria-label="Key interests">
-                    <span class="pill">Multilingual NLP</span>
-                    <span class="pill">Medical AI</span>
-                    <span class="pill">RAG + LLM Systems</span>
-                    <span class="pill">RL for NLP</span>
-                    <span class="pill">Distributed ETL</span>
-                </div>
+                <hr class="masthead-rule" />
+                <nav class="toc">
+                    <a href="#about">About</a>
+                    <a href="#research">Research</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#service">Service</a>
+                    <a href="#guides">Guides</a>
+                    <a href="#skills">Skills</a>
+                </nav>
             </header>
 
-            <div class="grid">
-                <!-- LEFT COLUMN -->
-                <div class="card">
-                    <section class="lead">
-                        <div class="section-title">
-                            <h2>About</h2>
-                            <span class="hint">research × systems</span>
-                        </div>
-
+            <div class="columns">
+                <div>
+                    <section id="about">
+                        <h2>About</h2>
                         <p>
-                            I bridge applied research and engineering-developing
+                            I work between applied research and engineering:
                             multimodal learning systems, text classification
-                            pipelines, and scalable data infrastructure. My
-                            current research explores text summarization across
-                            morphologically diverse languages and medical AI for
+                            pipelines, and the data infrastructure underneath
+                            them. My current research looks at text
+                            summarization across morphologically diverse
+                            languages, and at multimodal models for medical
                             diagnosis.
                         </p>
+                    </section>
 
-                        <hr class="rule" />
+                    <section id="education">
+                        <h2>Education</h2>
 
-                        <div class="section-title">
-                            <h2>Education</h2>
-                            <span class="hint">current + foundations</span>
-                        </div>
-
-                        <div class="item">
+                        <div class="entry">
                             <h3>
-                                Master of Science (Thesis) in Applied Computer
-                                Science · University of Winnipeg
+                                MSc (Thesis), Applied Computer Science
+                                <span class="at">· University of Winnipeg</span>
                             </h3>
                             <div class="meta">
-                                2024 - 2026 · GPA: 4.375/4.50 · Supervisor:
-                                Sheela Ramanna
+                                2024-2026 · GPA 4.375/4.50 · Supervisor: Sheela
+                                Ramanna
                             </div>
-                            <ul>
-                                <li>
-                                    Focus: Multilingualism, Reinforcement
-                                    Learning
-                                </li>
-                                <li>
-                                    Research direction: multilingual LLM
-                                    applications, multimodal learning for
-                                    medical diagnosis, and RL for NLP.
-                                </li>
-                            </ul>
+                            <p>
+                                Multilingual LLM applications, multimodal
+                                learning for medical diagnosis, and
+                                reinforcement learning for NLP.
+                            </p>
                         </div>
 
-                        <div class="item">
+                        <div class="entry">
                             <h3>
-                                B.Tech in Computer Science and Engineering ·
-                                Shivaji University
+                                BTech, Computer Science and Engineering
+                                <span class="at">· Shivaji University</span>
                             </h3>
                             <div class="meta">
-                                2018 - 2022 · GPA: 8.32/10.0 · Supervisor: U.A.
+                                2018-2022 · GPA 8.32/10.0 · Supervisor: U. A.
                                 Nuli
                             </div>
-                            <ul>
-                                <li>
-                                    Focus: Speech Recognition and
-                                    language-focused systems.
-                                </li>
-                            </ul>
+                            <p>
+                                Speech recognition and language-focused systems.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section id="research">
+                        <h2>Research &amp; Publications</h2>
+
+                        <div class="pub">
+                            <span class="title"
+                                >Optimizing ARDL Models for Retail Sales
+                                Forecasting and Fair Pricing.</span
+                            >
+                            <span class="authors">Rittikar, S. U.</span>
+                            <div class="venue">
+                                <span class="tag">Pre-print</span>
+                                <a
+                                    href="https://arxiv.org/abs/2607.09956"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    >arXiv</a
+                                >
+                            </div>
+                        </div>
+
+                        <div class="pub">
+                            <span class="title"
+                                >STRIDE Moves Market Sentiment.</span
+                            >
+                            <span class="authors"
+                                >Rittikar, S. U.; Ramanna, S.</span
+                            >
+                            <div class="venue">
+                                <span class="tag">Published</span>
+                                <a
+                                    href="https://proceedings.mlr.press/v318/rittikar26a.html"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    >Canadian AI 2026</a
+                                >
+                            </div>
+                        </div>
+
+                        <div class="pub">
+                            <span class="title"
+                                >Development of a Context-based Conversation
+                                State Prediction System.</span
+                            >
+                            <span class="authors"
+                                >Rittikar, S. U.; Rangate, S.; Nuli, U. A.;
+                                Sathe, M.; Rathor, V.; Patil, D.</span
+                            >
+                            <div class="venue">
+                                <span class="tag">Published</span>
+                                <a
+                                    href="https://ieeexplore.ieee.org/document/10064944"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    >IEEE AIST 2022</a
+                                >
+                                · First author
+                            </div>
                         </div>
                     </section>
 
                     <section id="experience">
-                        <div class="section-title">
-                            <h2>Experience</h2>
-                            <span class="hint">shipping + scaling</span>
-                        </div>
+                        <h2>Experience</h2>
 
-                        <div class="item">
-                            <h3>Teaching Assistant · University of Winnipeg</h3>
+                        <div class="entry">
+                            <h3>
+                                Teaching Assistant
+                                <span class="at">· University of Winnipeg</span>
+                            </h3>
                             <div class="meta">
-                                Winter 2026 · GACS-7206-001: Advanced Machine
+                                Winter 2026 · GACS-7206: Advanced Machine
                                 Learning
                             </div>
                         </div>
 
-                        <div class="item">
+                        <div class="entry">
                             <h3>
-                                Full-Stack Developer · QstudyAI, Inc. (Winnipeg,
-                                Canada)
+                                Full-Stack Developer
+                                <span class="at">· QstudyAI, Inc.</span>
                             </h3>
-                            <div class="meta">May 2025 - Present</div>
+                            <div class="meta">
+                                May 2025 - Present · Winnipeg, Canada
+                            </div>
                             <ul>
                                 <li>
                                     Leading end-to-end development of a
-                                    personalized EdTech AI platform serving 700+
-                                    users across 10+ universities, reaching 10k+
-                                    visits in 6 months.
+                                    personalized EdTech AI platform serving 1500+
+                                    users across 10+ universities, reaching 15k+
+                                    visits in six months.
                                 </li>
                                 <li>
-                                    Built multimodal generative features
-                                    including adaptive quizzes using test
-                                    theory, personalized notes, and AI-generated
+                                    Built multimodal generative features:
+                                    adaptive quizzes grounded in test theory,
+                                    personalized notes, and AI-generated
                                     stories, images, and songs.
                                 </li>
                                 <li>
-                                    Integrated advanced prompt engineering
-                                    strategies; implemented analytics
-                                    dashboards, performance tracking, and
-                                    comprehensive admin interfaces.
+                                    Implemented analytics dashboards,
+                                    performance tracking, and admin interfaces.
                                 </li>
                             </ul>
                         </div>
 
-                        <div class="item">
-                            <h3>Backend & Data Engineer · Weaveflow</h3>
+                        <div class="entry">
+                            <h3>
+                                Backend &amp; Data Engineer
+                                <span class="at">· Weaveflow</span>
+                            </h3>
                             <div class="meta">June 2023 - August 2024</div>
                             <ul>
                                 <li>
-                                    Architected and maintained backend/data
-                                    ecosystems with RAG pipelines and custom LLM
-                                    integrations for a smart crypto data
-                                    platform.
+                                    Architected backend and data ecosystems with
+                                    RAG pipelines and custom LLM integrations
+                                    for a crypto data platform.
                                 </li>
                                 <li>
                                     Applied clustering models and NLP techniques
-                                    to address complex language processing
-                                    challenges; contributed to 100% revenue
-                                    growth.
+                                    to complex language processing problems;
+                                    contributed to 100% revenue growth.
                                 </li>
                                 <li>
-                                    Built custom APIs enabling seamless
-                                    integration of diverse data sources and
+                                    Built APIs unifying diverse data sources for
                                     investor-focused analytics.
                                 </li>
                             </ul>
                         </div>
 
-                        <div class="item">
+                        <div class="entry">
                             <h3>
-                                Data Engineer · Terra Economics and Analytics
-                                Lab
+                                Data Engineer
+                                <span class="at"
+                                    >· Terra Economics and Analytics Lab</span
+                                >
                             </h3>
                             <div class="meta">November 2022 - May 2023</div>
                             <ul>
@@ -687,15 +565,17 @@
                                     points daily.
                                 </li>
                                 <li>
-                                    Developed NLP-based data transformation
-                                    systems for large-scale ingestion and
-                                    normalization.
+                                    Developed NLP-based transformation systems
+                                    for large-scale ingestion and normalization.
                                 </li>
                             </ul>
                         </div>
 
-                        <div class="item">
-                            <h3>Data Engineering Intern · KYC Hub</h3>
+                        <div class="entry">
+                            <h3>
+                                Data Engineering Intern
+                                <span class="at">· KYC Hub</span>
+                            </h3>
                             <div class="meta">April 2022 - October 2022</div>
                             <ul>
                                 <li>
@@ -710,297 +590,170 @@
                         </div>
                     </section>
 
-                    <section id="publications">
-                        <div class="section-title">
-                            <h2>Research & Publications</h2>
-                            <span class="hint">papers</span>
-                        </div>
+                    <section id="service">
+                        <h2>Awards, Mentoring &amp; Talks</h2>
 
-                        <div class="item">
-                            <h3>
-                                <a
-                                    href="https://arxiv.org/abs/2607.09956"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    >arXiv</a
-                                >
-                            </h3>
+                        <div class="entry">
+                            <h3>President's Scholarship for World Leaders</h3>
                             <div class="meta">
-                                Pre-print
-                            </div>
-                            <p class="small">
-                                <em
-                                    >Optimizing ARDL Models for Retail Sales Forecasting and Fair Pricing</em
-                                >
-                                (Rittikar, S.U.).
-                            </p>
-                        </div>                        
-                        
-                        <div class="item">
-                            <h3>
-                                <a
-                                    href="https://proceedings.mlr.press/v318/rittikar26a.html"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    >Canadian AI 2026</a
-                                >
-                            </h3>
-                            <div class="meta">
-                                Published
-                            </div>
-                            <p class="small">
-                                <em
-                                    >STRIDE Moves Market Sentiment</em
-                                >
-                                (Rittikar, S.U.; Ramanna, S.).
-                            </p>
-                        </div>
-
-                        <div class="item">
-                            <h3>
-                                <a
-                                    href="https://ieeexplore.ieee.org/document/10064944"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    >IEEE AIST 2022</a
-                                >
-                            </h3>
-                            <div class="meta">
-                                Published · First Author · 71-80% contribution
-                            </div>
-                            <p class="small">
-                                <em
-                                    >Development of a Context-based Conversation
-                                    State Prediction System</em
-                                >
-                                (Rittikar, S.U.; Rangate, S.; Nuli, U.A.; Sathe,
-                                M.; Rathor, V.; Patil, D.).
-                            </p>
-                        </div>
-                    </section>
-
-                    <section>
-                        <div class="section-title">
-                            <h2>Awards, Mentoring & Talks</h2>
-                            <span class="hint">service + recognition</span>
-                        </div>
-
-                        <div class="two-col">
-                            <div class="item">
-                                <h3>Awards</h3>
-                                <ul>
-                                    <li>
-                                        President's Scholarship for World
-                                        Leaders (University of Winnipeg) -
-                                        $5,000 CAD (2024)
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="item">
-                                <h3>Mentoring</h3>
-                                <ul>
-                                    <li>
-                                        Graduate Research Assistant - University
-                                        of Winnipeg (Sep 2024 - Present)
-                                    </li>
-                                    <li>
-                                        Research Mentor (MITACS) - Guided 2
-                                        students (Jul 2025 - Oct 2025)
-                                    </li>
-                                </ul>
+                                University of Winnipeg · $5,000 CAD · 2024
                             </div>
                         </div>
 
-                        <div class="item">
-                            <h3>Presentations</h3>
+                        <div class="entry">
+                            <h3>Mentoring</h3>
                             <ul>
                                 <li>
-                                    3-Minute Thesis Competition 2025 -
-                                    "Multilingual Propaganda Extraction using
-                                    LLMs" (20 languages;
-                                    claims/narratives/actors).
+                                    Graduate Research Assistant, University of
+                                    Winnipeg (Sep 2024 - Present).
                                 </li>
                                 <li>
-                                    Physics Colloquium 2025 (Invited) - "Towards
-                                    Robust Alzheimer's Disease Classification
-                                    with Multimodal Fusion".
+                                    Research Mentor (MITACS), guided two
+                                    students (Jul - Oct 2025).
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="entry">
+                            <h3>Talks</h3>
+                            <ul>
+                                <li>
+                                    <em
+                                        >Multilingual Propaganda Extraction
+                                        using LLMs.</em
+                                    >
+                                    3-Minute Thesis Competition, 2025. Twenty
+                                    languages; claims, narratives, actors.
+                                </li>
+                                <li>
+                                    <em
+                                        >Towards Robust Alzheimer's Disease
+                                        Classification with Multimodal Fusion.</em
+                                    >
+                                    Physics Colloquium, 2025 (invited).
                                 </li>
                             </ul>
                         </div>
                     </section>
+
+                    <section id="guides">
+                        <h2>Guides &amp; Notes</h2>
+                        <p>Occasional deep-dives on things I find interesting.</p>
+
+                        <div class="guide">
+                            <h3>
+                                <a href="guides/cellular-automata.html"
+                                    >Cellular Automata: A Comprehensive
+                                    Guide</a
+                                >
+                            </h3>
+                            <div class="meta">
+                                March 2026 · Python · Complexity theory
+                            </div>
+                            <p>
+                                From 1D Wolfram rules and Conway's Game of Life
+                                to entropy, reversible CA, and
+                                reaction-diffusion systems. Runnable Python
+                                throughout.
+                            </p>
+                        </div>
+
+                        <div class="guide">
+                            <h3>
+                                <a href="guides/three-way-decisions.html"
+                                    >Three-Way Decision Systems: A Study
+                                    Guide</a
+                                >
+                            </h3>
+                            <div class="meta">
+                                May 2026 · Decision theory · Rough sets
+                            </div>
+                            <p>
+                                Reading notes on Yao's three-way decisions
+                                (Trisect-Act-Outcome), from Pawlak rough sets
+                                and DTRS thresholds to sequential 3WD,
+                                three-way clustering, and modern extensions.
+                            </p>
+                        </div>
+                    </section>
                 </div>
 
-                <!-- RIGHT COLUMN -->
-                <aside class="card" id="skills">
-                    <section>
-                        <div class="section-title">
-                            <h2>Skills</h2>
-                            <span class="hint">tooling</span>
-                        </div>
+                <aside>
+                    <section id="skills">
+                        <h2>Skills</h2>
+                        <dl>
+                            <div class="skill">
+                                <dt>Languages</dt>
+                                <dd>Python, TypeScript, SQL</dd>
+                            </div>
+                            <div class="skill">
+                                <dt>Backend &amp; Data</dt>
+                                <dd>
+                                    FastAPI, Node.js, PostgreSQL, MongoDB,
+                                    Apache Spark, ETL
+                                </dd>
+                            </div>
+                            <div class="skill">
+                                <dt>Frontend</dt>
+                                <dd>Next.js, React, Tailwind CSS</dd>
+                            </div>
+                            <div class="skill">
+                                <dt>ML &amp; AI</dt>
+                                <dd>
+                                    Transformers, RAG, fine-tuning,
+                                    post-training, reinforcement learning
+                                </dd>
+                            </div>
+                            <div class="skill">
+                                <dt>NLP</dt>
+                                <dd>
+                                    Sentiment analysis, NER, text
+                                    classification, propaganda detection
+                                </dd>
+                            </div>
+                            <div class="skill">
+                                <dt>Cloud &amp; DevOps</dt>
+                                <dd>AWS, Docker, CI/CD</dd>
+                            </div>
+                        </dl>
+                    </section>
 
-                        <div class="item">
-                            <h3>Languages</h3>
-                            <p class="small">
-                                Python · JavaScript/TypeScript · SQL
-                            </p>
-                        </div>
-
-                        <div class="item">
-                            <h3>Backend / Data</h3>
-                            <p class="small">
-                                FastAPI · Node.js · PostgreSQL · MongoDB ·
-                                Apache Spark · ETL Pipelines
-                            </p>
-                        </div>
-
-                        <div class="item">
-                            <h3>Frontend</h3>
-                            <p class="small">
-                                Next.js · React · TypeScript · Tailwind CSS
-                            </p>
-                        </div>
-
-                        <div class="item">
-                            <h3>ML / AI</h3>
-                            <p class="small">
-                                Transformers Models · RAG · Fine-tuning . Post-training · Reinforcement
-                                Learning
-                            </p>
-                        </div>
-
-                        <div class="item">
-                            <h3>NLP</h3>
-                            <p class="small">
-                                Sentiment Analysis · NER · Text Classification ·
-                                Propaganda Detection
-                            </p>
-                        </div>
-
-                        <div class="item">
-                            <h3>Cloud / DevOps</h3>
-                            <p class="small">
-                                AWS · Docker · GitHub · CI/CD
-                            </p>
-                        </div>
-
-                        <hr class="rule" />
-
-                        <div class="section-title">
-                            <h2>Research Interests</h2>
-                            <span class="hint">themes</span>
-                        </div>
-                        <ul class="small">
-                            <li>
-                                Multilingual NLP; bilingualism & multilingualism
-                            </li>
+                    <section id="interests">
+                        <h2>Research Interests</h2>
+                        <ul>
+                            <li>Multilingual NLP; bilingualism</li>
                             <li>Medical AI</li>
-                            <li>Propaganda & disinformation detection</li>
+                            <li>Propaganda &amp; disinformation detection</li>
                             <li>Aspect-based sentiment analysis</li>
                             <li>RL for NLP; abstractive summarization</li>
-                            <li>Expert systems; information systems</li>
+                            <li>Expert and information systems</li>
                         </ul>
+                    </section>
 
-                        <hr class="rule" />
-
-                        <section id="contact">
-                            <div class="section-title">
-                                <h2>Contact</h2>
-                                <span class="hint">quick</span>
-                            </div>
-                            <p class="small">
-                                Email is best:
-                                <a href="mailto:suj00rit20@gmail.com"
-                                    >suj00rit20@gmail.com</a
-                                >
-                                <br />
-                                or,
-                                <a
-                                    href="mailto:rittikar-s@webmail.uwinnipeg.ca"
-                                >
-                                    rittikar-s@webmail.uwinnipeg.ca </a
-                                >.
-                            </p>
-                        </section>
+                    <section id="contact">
+                        <h2>Contact</h2>
+                        <p style="font-size: 0.94rem">
+                            Email is best:
+                            <a href="mailto:suj00rit20@gmail.com"
+                                >suj00rit20@gmail.com</a
+                            >, or
+                            <a href="mailto:rittikar-s@webmail.uwinnipeg.ca"
+                                >rittikar-s@webmail.uwinnipeg.ca</a
+                            >.
+                        </p>
                     </section>
                 </aside>
             </div>
 
-            <!-- GUIDES -->
-            <section id="guides" style="margin-top: 1.5rem;">
-                <div class="card">
-                    <div class="section-title">
-                        <h2>Guides &amp; Notes</h2>
-                        <span class="hint">writing to learn</span>
-                    </div>
-                    <p style="margin: 0 0 1.1rem; color: var(--muted); font-size: 0.93rem;">
-                        Occasional deep-dives on topics I find interesting.
-                    </p>
-
-                    <div class="item">
-                        <h3>
-                            <a href="guides/cellular-automata.html">
-                                Cellular Automata - A Comprehensive Guide
-                            </a>
-                        </h3>
-                        <div class="meta">March 2026 · Python · Complexity theory</div>
-                        <p style="margin: 0.3rem 0 0; font-size: 0.9rem;">
-                            From 1D Wolfram rules and Conway's Game of Life to entropy, reversible CA, and reaction-diffusion systems. Includes runnable Python code throughout.
-                        </p>
-                    </div>
-
-                    <div class="item">
-                        <h3>
-                            <a href="guides/three-way-decisions.html">
-                                Three-Way Decision Systems - A Study Guide
-                            </a>
-                        </h3>
-                        <div class="meta">May 2026 · Decision theory · Rough sets</div>
-                        <p style="margin: 0.3rem 0 0; font-size: 0.9rem;">
-                            Reading notes on Yao's three-way decisions (TAO: Trisect-Act-Outcome), from Pawlak rough sets and DTRS thresholds to sequential 3WD, three-way clustering, and modern extensions.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             <footer>
-                © <span id="year"></span> · Plain HTML, meant to last
+                <span>© <span id="year"></span> Sujay Uday Rittikar</span>
+                <span>Plain HTML, meant to last</span>
             </footer>
         </main>
 
         <script>
             document.getElementById("year").textContent =
                 new Date().getFullYear();
-
-            // Floating teal particles (chi/energy orbs)
-            (function () {
-                const container = document.createElement("div");
-                container.className = "particle-container";
-                document.body.insertBefore(container, document.body.firstChild);
-
-                const config = [
-                    { left:  6, delay:  0, dur: 18, size: 4 },
-                    { left: 18, delay:  5, dur: 24, size: 3 },
-                    { left: 30, delay: 10, dur: 16, size: 5 },
-                    { left: 42, delay:  2, dur: 20, size: 3 },
-                    { left: 55, delay: 14, dur: 22, size: 4 },
-                    { left: 67, delay:  7, dur: 17, size: 3 },
-                    { left: 79, delay:  3, dur: 25, size: 5 },
-                    { left: 91, delay: 11, dur: 19, size: 3 },
-                    { left: 12, delay: 18, dur: 21, size: 4 },
-                    { left: 73, delay: 22, dur: 15, size: 3 },
-                ];
-
-                config.forEach(function (c) {
-                    const p = document.createElement("div");
-                    p.className = "particle";
-                    p.style.left = c.left + "vw";
-                    p.style.width  = c.size + "px";
-                    p.style.height = c.size + "px";
-                    p.style.animationDelay    = c.delay + "s";
-                    p.style.animationDuration = c.dur   + "s";
-                    container.appendChild(p);
-                });
-            })();
         </script>
     </body>
 </html>
